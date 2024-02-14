@@ -1,3 +1,16 @@
-# Bilingual-Fractions-Flutter-App
+# franctions
 
-A bilingual mathematics application crafted to teach fractions to Hispanic children. Through a combination of quizzes, flashcards, and interactive games, this app provides an engaging learning experience. Notable features include progress tracking and the ability to seamlessly switch between Spanish and English languages.
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
