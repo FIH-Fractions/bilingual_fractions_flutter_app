@@ -35,28 +35,17 @@ class _flashcardState extends State<flashcard> {
 
   }
 
-/*  List<Flashcard> _flashcards = [
-    Flashcard(
-        question: "What programming language does flutter use?",
-        answer: "HALF",
-        imagePath: "assets/half_pizza.png" ),
-    Flashcard(
-        question: "Who you gonna call?",
-        answer: "ONE FOURTH!",
-        imagePath: "assets/one_fourth_pizza.png"),
-  ];*/
-
   List<Flashcard> _flashcards = [
     Flashcard(
         question: "What does this fraction represent",
         answerEn: "Half", // English answer
-        answerEs: "medio", // Spanish answer
+        answerEs: "Medio", // Spanish answer
         imagePath: "assets/half_pizza.png"
     ),
     Flashcard(
         question: "What does this fraction represent",
-        answerEn: "Half!", // English answer
-        answerEs: "Un cuarto!", // Example Spanish translation
+        answerEn: "Three Fourths!", // English answer
+        answerEs: "Tres Cuartos!", // Example Spanish translation
         imagePath: "assets/one_fourth_pizza.png"
     ),
   ];
@@ -69,14 +58,6 @@ class _flashcardState extends State<flashcard> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.brown[100],
-        scaffoldBackgroundColor: Colors.brown[100],
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.brown[100],
-        ),
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.orange[50]),
-      ),
       home: Scaffold(
         body: Center(
           child: Column(
@@ -85,7 +66,7 @@ class _flashcardState extends State<flashcard> {
               Text('Current language is ${_isEnglish ? 'English' : 'Spanish'}'),
               SizedBox(
                 width: 500,
-                height: 550,
+                height: 500,
                 child: FlipCard(
                   key: cardKey,
                   flipOnTouch: true,

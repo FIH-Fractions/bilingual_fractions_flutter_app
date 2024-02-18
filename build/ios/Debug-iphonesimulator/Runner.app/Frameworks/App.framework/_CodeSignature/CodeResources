@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		FIbXZ8yirYJVLpZlQSpqD4Pr8u4=
+		AdWW0Ank6HmZnri2bg6/bHwl7ko=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		I8QMrvdbmdJ1OV4j/sMrZlw+LfI=
+		lueFQqebkcoQSVtR/S3ZQ2jXM6A=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -23,6 +23,10 @@
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
 		7R1jo5aozvp9oxg3Ehvq8d9krzc=
+		</data>
+		<key>flutter_assets/assets/fraction_logo.png</key>
+		<data>
+		nUD/kRHJQJ5zXUtYmLQ8uWdflGo=
 		</data>
 		<key>flutter_assets/assets/half_pizza.png</key>
 		<data>
@@ -42,7 +46,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		yEn0F8JXZIxFKA1evfHRe4bfSY0=
+		PpLfsxCdDTDekNTOoxRt7FGng0M=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -63,14 +67,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dwsx+3nnafo1tHddZ3pigEzYnDdWHJnhml9AweZV9t4=
+			yK6DcsKI80suxO8/C99PUrRgw/cOS5PDC/caokof8l8=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0tC+Ia428YQFWU7CB07gDH5GLB653G4cicPN9jsGLSI=
+			3KKGSmHyi415yKliAsUdVw+zBmBZfXE3fR6XotafaU4=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -85,6 +89,13 @@
 			<key>hash2</key>
 			<data>
 			MMs2elKsrp2F6cowre5R0AFS0M7Nti4K3mYkd+vH6JQ=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/fraction_logo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2DYdIEy4mfhS1WTmGFN0E+c22Yz1VRghBRQc5YxXA4c=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/half_pizza.png</key>
@@ -119,7 +130,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ygFiHtuqlKknjzZ9s7ipkbcWmsk+MmLC4oCAvr0Spz0=
+			+slQn88XICRxfyQe7qznBWM4veUrlW52jZ1ZYSEONIc=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
