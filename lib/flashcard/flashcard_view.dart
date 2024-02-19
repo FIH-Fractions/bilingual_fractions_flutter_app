@@ -7,8 +7,6 @@ class FlashcardView extends StatelessWidget {
   final VoidCallback onToggleLanguage;
   final bool isEnglish;
 
-
-
   FlashcardView({
     Key? key,
     required this.textEn,
@@ -19,17 +17,37 @@ class FlashcardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _isEnglish = Localizations.localeOf(context).languageCode == 'en';
     return Card(
-      elevation: 4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
         children: [
-          // Display logic is handled outside, so this widget just uses the provided text
-          Text(isEnglish ? textEn : textEs, textAlign: TextAlign.center),
-          ElevatedButton(
-            onPressed: onToggleLanguage,
-            child: Text(isEnglish ? 'Switch to Spanish' : 'Switch to English'),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              isEnglish ? textEn : textEs,
+              style: const TextStyle(
+                fontSize: 60,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Positioned(
+            top: 8,
+            right: 8,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.volume_up_rounded),
+                  onPressed: () {
+                    // Handle the volume action
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.translate_rounded),
+                  onPressed: onToggleLanguage,
+                ),
+              ],
+            ),
           ),
         ],
       ),
