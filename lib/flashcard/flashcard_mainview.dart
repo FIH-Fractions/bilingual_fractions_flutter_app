@@ -31,9 +31,15 @@ class _flashcardState extends State<flashcard> {
     ),
     Flashcard(
         question: "What fraction does the Cake represent?",
-        answerEn: "Three Fourths!", // English answer
-        answerEs: "Tres Cuartos!", // Example Spanish translation
+        answerEn: "Three Fourths!",
+        answerEs: "Tres Cuartos!",
         imagePath: "assets/flashcards/three_fourth_cake.png"
+    ),
+    Flashcard(
+        question: "What fraction does the Lemon represent?",
+        answerEn: "One Third!",
+        answerEs: "Un Tercio!",
+        imagePath: "assets/flashcards/one_third_lemon.png"
     ),
   ];
 
@@ -63,6 +69,7 @@ class _flashcardState extends State<flashcard> {
                         children: <Widget>[
                           Text(
                             _flashcards[_currentIndex].question,
+                            textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 24,
                             ),
