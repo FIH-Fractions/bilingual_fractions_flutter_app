@@ -117,7 +117,7 @@
     },
     {
       "name": "simple_gesture_detector",
-      "rootUri": "file:///Users/nehasawant/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.0",
+      "rootUri": "file:///Users/nehasawant/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -182,13 +182,13 @@
       "languageVersion": "3.2"
     },
     {
-      "name": "test1flutter",
+      "name": "bilingual_fractions_flutter_app",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-02-19T03:56:48.204997Z",
+  "generated": "2024-02-19T04:35:15.375593Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }
