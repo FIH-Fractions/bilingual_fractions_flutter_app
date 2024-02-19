@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test1flutter/games/games.dart';
 import 'flashcard/flashcard_mainview.dart';
+import 'games/games.dart';
 import 'home/home.dart';
 import 'profile/progress.dart';
 import 'quiz/quiz.dart';
 
 void main() => runApp(const BottomNavBarApp());
+
+/*void main() => runApp(DraggableExampleApp());*/
 
 class BottomNavBarApp extends StatelessWidget {
   const BottomNavBarApp({super.key});
@@ -14,6 +16,7 @@ class BottomNavBarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: BottomNavBar(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -40,13 +40,13 @@ class _flashcardState extends State<flashcard> {
         question: "What does this fraction represent",
         answerEn: "Half", // English answer
         answerEs: "Medio", // Spanish answer
-        imagePath: "assets/half_pizza.png"
+        imagePath: "assets/flashcards/half_pizza.png"
     ),
     Flashcard(
         question: "What does this fraction represent",
         answerEn: "Three Fourths!", // English answer
         answerEs: "Tres Cuartos!", // Example Spanish translation
-        imagePath: "assets/one_fourth_pizza.png"
+        imagePath: "assets/flashcards/one_fourth_pizza.png"
     ),
   ];
 
