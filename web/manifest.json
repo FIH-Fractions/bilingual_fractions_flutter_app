@@ -1,6 +1,6 @@
 {
-    "name": "test1flutter",
-    "short_name": "test1flutter",
+    "name": "bilingual_fractions_flutter_app",
+    "short_name": "bilingual_fractions_flutter_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

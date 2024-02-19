@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/flutter_tts.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		xcZOBARK4engJei3JnQvcSCauns=
+		duJQ5za0JCFxY8sLK9HRZjXIgdE=
 		</data>
 		<key>Modules/flutter_tts.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/flutter_tts.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		X77It3dPhQGkHeXcDOWa3fmadDM=
+		IEJFYFA6qC9t0hc1L16dkaVlRcI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -140,11 +140,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xcZOBARK4engJei3JnQvcSCauns=
+			duJQ5za0JCFxY8sLK9HRZjXIgdE=
 			</data>
 			<key>hash2</key>
 			<data>
-			h53YFI0EjHyoLvWiN69+YphxWvI9w0xSrq/qpvLzvhI=
+			iKFo1T71QDvi0a+j0e+9J5mVnmHAYUjSD9USX5BxwPA=
 			</data>
 		</dict>
 		<key>Modules/flutter_tts.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -173,11 +173,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			X77It3dPhQGkHeXcDOWa3fmadDM=
+			IEJFYFA6qC9t0hc1L16dkaVlRcI=
 			</data>
 			<key>hash2</key>
 			<data>
-			lxuE9fq76keTICqPAu6EIJMSxFcpqeR7b//9zK2Jc1Y=
+			jjuwc5038ptHAKD2qpyY13/DTIB5h7I8X8wXi74obRY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
