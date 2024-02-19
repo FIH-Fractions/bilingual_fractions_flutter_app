@@ -7,8 +7,6 @@ import 'quiz/quiz.dart';
 
 void main() => runApp(const BottomNavBarApp());
 
-/*void main() => runApp(DraggableExampleApp());*/
-
 class BottomNavBarApp extends StatelessWidget {
   const BottomNavBarApp({super.key});
 

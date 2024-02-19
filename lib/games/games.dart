@@ -22,121 +22,143 @@ class MatchGame extends StatefulWidget {
 }
 
 class _MatchGameState extends State<MatchGame> {
-  // Map of items to their matches, using item:image path format
-  final Map<String, String> _items = {
-    'Whole': 'assets/games/whole.png',
-    'Half': 'assets/games/half.png',
-    'One Tenths': 'assets/games/one_tenth.png',
-  };
+  late List<ItemModel> items;
+  late List<ItemModel> shuffledItems;
+  late int score;
+  late bool gameOver;
 
-  // Track matched items to remove them
-  Set<String> _matchedItems = Set();
+  @override
+  void initState() {
+    super.initState();
+    initGame();
+  }
+
+  initGame(){
+    gameOver = false;
+    score=0;
+    items = [
+      ItemModel(imagePath: 'assets/games/half.png', name: "Half", value: "Half"),
+      ItemModel(imagePath: 'assets/games/one_tenth.png', name: "One Tenth", value: "One Tenth"),
+      ItemModel(imagePath: 'assets/games/whole.png', name: "Whole", value: "Whole"),
+    ];
+    shuffledItems = List<ItemModel>.from(items);
+    items.shuffle();
+    shuffledItems.shuffle();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if(items.length == 0)
+      gameOver = true;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
         const Padding(
           padding: EdgeInsets.all(16.0),
           child: Text(
-            'Match the following',
+            'Match the Fractions',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 30),
           ),
         ),
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        Text.rich(TextSpan(
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: _items.keys.map((item) {
-                  if (!_matchedItems.contains(item)) {
-                    return Draggable<String>(
-                      data: item,
-                      feedback: Material(
-                        child: Container(
-                          height: 80,
-                          width: 170,
-                          color: Color(0xFFF354D0),
-                          child: Center(
+              TextSpan(text: "Score: ", style: const TextStyle(fontSize: 25)),
+              TextSpan(text: "$score", style: const TextStyle(
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ))
+            ]
+        )
+        ),
+        if(!gameOver)
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: items.map((item) {
+                      return Container(
+                        margin: const EdgeInsets.all(8.0),
+                        child: Draggable<ItemModel>(
+                          data: item,
+                          childWhenDragging: Container(
+                            color: Colors.grey[200],
+                            width: 160,
+                            height: 80,
+                            alignment: Alignment.center,
+                            child: Text(
+                              item.name,
+                              style: TextStyle(color: Colors.grey, fontSize: 25),
+                            ),
+                          ),
+                          feedback: Material(
+                            color: Colors.transparent,
+                            child: Container(
+                              color: Colors.blue,
+                              width: 160,
+                              height: 80,
+                              alignment: Alignment.center,
                               child: Text(
-                                item,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 24,),
-                              )
+                                item.name,
+                                style: TextStyle(color: Colors.white, fontSize: 25),
+                              ),
+                            ),
+                          ),
+                          child: Container(
+                            color: Colors.blue,
+                            width: 160,
+                            height: 80,
+                            alignment: Alignment.center,
+                            child: Text(
+                              item.name,
+                              style: TextStyle(color: Colors.white, fontSize: 25),
+                            ),
                           ),
                         ),
-                      ),
-                      childWhenDragging: Container(
-                        height: 80,
-                        width: 170,
-                        color: Color(0xFFE5C5DD),
-                        child: Center(
-                            child: Text(
-                              item,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 24,),
-                            )
-                        ),
-                      ),
-                      child: Container(
-                        margin: const EdgeInsets.all(8.0),
-                        color: Color(0xFFE5C5DD),
-                        height: 80,
-                        width: 170,
-                        child: Center(
-                            child: Text(
-                              item,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 24,),
-                            )
-                        ),
-                      ),
-                    );
-                  } else {
-                    return Container(); // Placeholder for matched items
-                  }
-                }).toList(),
-              ),
-          // Column for target areas
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: _items.entries.map((entry) {
-                if (!_matchedItems.contains(entry.key)) {
-                  return DragTarget<String>(
-                    onAccept: (receivedItem) {
-                      if (receivedItem == entry.key) {
-                        setState(() {
-                          _matchedItems.add(entry.key); // Mark as matched
-                        });
-                      }
-                    },
-                    builder: (
-                        BuildContext context,
-                        List<dynamic> accepted,
-                        List<dynamic> rejected,
-                        ) {
-                      return Container(
-                        height: 140,
-                        width: 140,
-                        child: Image.asset(entry.value, fit: BoxFit.cover),
                       );
-                    },
-                    onWillAccept: (data) {
-                      // Only accept the drag if it's the correct match
-                      return data == entry.key;
-                    },
-                  );
-                } else {
-                  return Container(); // Placeholder for matched targets
-                }
-              }).toList(),
+                    }).toList()
+                ),
+
+                // Column for target areas
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: shuffledItems.map((item){
+                      return DragTarget<ItemModel>(
+                        onAccept: (receivedItem){
+                          if(item.value== receivedItem.value){
+                            setState(() {
+                              items.remove(receivedItem);
+                              shuffledItems.remove(item);
+                              score+=10;
+                            });
+
+                          }else{
+                            setState(() {
+                              score-=5;
+                            });
+                          }
+                        },
+                        onWillAccept: (receivedItem){
+                          return true;
+                        },
+                        builder: (context, acceptedItems,rejectedItem) => Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.all(8.0),
+                          constraints: const BoxConstraints(
+                            maxWidth: 140,
+                            maxHeight: 140,
+                          ),
+                          child: Image.asset(item.imagePath, fit: BoxFit.cover),
+                        ),
+                      );
+                    }).toList()
+                ),
+              ],
             ),
-            ],
           ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -145,14 +167,29 @@ class _MatchGameState extends State<MatchGame> {
               icon: Icon(Icons.replay, size: 35,),
               onPressed: () {
                 setState(() {
-                  _matchedItems.clear();
+                  initGame();
                 });
               },
             ),
             IconButton(icon: Icon(Icons.arrow_forward_rounded, size: 35,), onPressed: () {  },),
           ],
         ),
+        if(gameOver)
+          const Text("Game Over!", style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+            fontSize: 24.0,),
+          ),
       ],
     );
   }
+}
+
+class ItemModel {
+  final String name;
+  final String value;
+  final String imagePath;
+  ItemModel({
+    required this.name, required this.value, required this.imagePath,
+  });
 }
