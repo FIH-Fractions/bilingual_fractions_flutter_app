@@ -23,16 +23,16 @@ class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
   @override
-  State<BottomNavBar> createState() =>
-      _BottomNavBarState();
+  State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  final List<Widget> _widgetOptions = <Widget>[
     home(),
-    quiz(),
+    QuizPage(),
     flashcard(),
     games(),
   ];
@@ -47,9 +47,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(padding: EdgeInsets.only(left: 10),
+        leading: Padding(
+          padding: EdgeInsets.only(left: 10),
           child: IconButton(
-            icon: const Icon(Icons.person, size: 35,),
+            icon: const Icon(
+              Icons.person,
+              size: 35,
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -59,9 +63,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
         ),
         actions: [
-          Padding(padding: EdgeInsets.only(right: 10),
+          Padding(
+            padding: EdgeInsets.only(right: 10),
             child: IconButton(
-              icon: const Icon(Icons.translate_rounded, size: 35, color: Colors.black,),
+              icon: const Icon(
+                Icons.translate_rounded,
+                size: 35,
+                color: Colors.black,
+              ),
               onPressed: () {},
             ),
           ),
@@ -74,19 +83,31 @@ class _BottomNavBarState extends State<BottomNavBar> {
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded, size: 35,),
+            icon: Icon(
+              Icons.home_rounded,
+              size: 35,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school_rounded, size: 35,),
+            icon: Icon(
+              Icons.school_rounded,
+              size: 35,
+            ),
             label: 'Quizzes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.amp_stories_rounded, size: 35,),
+            icon: Icon(
+              Icons.amp_stories_rounded,
+              size: 35,
+            ),
             label: 'Flashcards',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.sports_esports, size: 35,),
+            icon: Icon(
+              Icons.sports_esports,
+              size: 35,
+            ),
             label: 'Games',
           ),
         ],

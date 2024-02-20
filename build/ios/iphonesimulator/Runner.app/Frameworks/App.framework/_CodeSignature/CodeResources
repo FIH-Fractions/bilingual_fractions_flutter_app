@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		Atsayv9gfl8PasSPDvPCIZi7km0=
+		qBg1g3g1GV/Cff6MRWCtVSxKfgI=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		6cgz08CPFMHpYCvbwtD9+WoRPSc=
+		Fw+KP5Q/bpnRfDAVBTKnZH1ID7I=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		7R1jo5aozvp9oxg3Ehvq8d9krzc=
+		ocKK0M1ZvLWarTT8i7Q675IZk1I=
 		</data>
 		<key>flutter_assets/assets/.DS_Store</key>
 		<data>
@@ -60,6 +60,14 @@
 		<data>
 		+bUi/5YmhUqKk7m3F6P0+XS+KYk=
 		</data>
+		<key>flutter_assets/assets/quiz/Half-pizza.png</key>
+		<data>
+		pFiuK+jBk3g/O8LUIS+hHLfkuVM=
+		</data>
+		<key>flutter_assets/assets/quiz/three_fourth_cake.png</key>
+		<data>
+		Ol2sDsvko/y2+n/pbXmr4iEZM6Y=
+		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
 		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
@@ -70,7 +78,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		/GzbtN5fFolimUJkwG8xcacPzXc=
+		eJorMhb8fe98r5kGUBtPc1lu8Pw=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -91,14 +99,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Wv2CMYTUzABO6iGNUDAKzxucrWFv4ESqRq4tIT0nF6U=
+			PFdBOXASaGSrem4m491wGBuik1IFBZaz5dmraps01RE=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6UfFlNoYJxSIJ22q5LNmghZ+OZwXDnLK9kRsgl8b6JY=
+			M9/rE+LH0umyPhJWNfSONE+LaWqChilDHxd9u+vvSUk=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -112,7 +120,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MMs2elKsrp2F6cowre5R0AFS0M7Nti4K3mYkd+vH6JQ=
+			esM9ULbOrTQcgnMeo/ToCTCMVijfxozRylcHYx7xTYc=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/flashcards/half_pizza.png</key>
@@ -164,6 +172,20 @@
 			SW9KfKVGZqPZfHCz9tAwwfmFEqVMx5SETjrpeisbsVE=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/quiz/Half-pizza.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			5VCbnkuGyHs8b5Dgq8ABv2KLu3IqjApOc4f5zAxkooI=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/quiz/three_fourth_cake.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			92bfVAsdh2jFUnJ2/b00/s0D7+oFcnv3RuvPad73Kmc=
+			</data>
+		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<dict>
 			<key>hash2</key>
@@ -182,7 +204,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+vrbR3Yf+YLdAi/epA1jdgAK5wWTEbFq3jnZDHZRDcM=
+			wFkY15EAfaSF+WKxfC/mFtcVfKO7v+H+/rECBV+30Rg=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
