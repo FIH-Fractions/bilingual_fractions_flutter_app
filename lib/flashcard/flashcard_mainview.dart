@@ -95,6 +95,10 @@ class _flashcardState extends State<flashcard> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(onPressed: _currentIndex > 0 ? showPreviousCard : null, icon: Icon(Icons.arrow_back_rounded, size: 35,)),
+                  Text(
+                    '${_currentIndex + 1} / ${_flashcards.length}', // Display current index + 1 and total count
+                    style: TextStyle(fontSize: 24),
+                  ),
                   IconButton(onPressed: _currentIndex < _flashcards.length - 1 ? showNextCard : null, icon: Icon(Icons.arrow_forward_rounded, size: 35,)),
                 ],
               )
