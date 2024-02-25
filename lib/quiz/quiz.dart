@@ -17,6 +17,32 @@ class _QuizPageState extends State<QuizPage> {
   // To track if the question has been answered, and if so, which option was selected
   int? _selectedAnswerIndex;
 
+  void showTemporaryPopup(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          content: Container(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22)),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   void _showNextQuestion() {
     setState(() {
       _selectedAnswerIndex = null; // Reset for the next question
@@ -40,10 +66,14 @@ class _QuizPageState extends State<QuizPage> {
       // Prevent changing answer once selected
       setState(() {
         _selectedAnswerIndex = index;
-        if (index == questions[_currentIndex].correctAnswerIndex) {
+        bool isCorrect = index == questions[_currentIndex].correctAnswerIndex;
+        if (isCorrect) {
           _score += 10;
+          showTemporaryPopup('Your Answer is Correct! +10 points');
         } else {
           _score -= 5;
+          showTemporaryPopup(
+              'Wrong Answer! -5 points'); // Or you can customize this message
         }
       });
     }

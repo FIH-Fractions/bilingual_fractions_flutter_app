@@ -1,0 +1,1 @@
+ /Users/yugandharkhair/Desktop/Silvia\ Project/bilingual_fractions_flutter_app/.dart_tool/flutter_build/4b893359b1319737a084b720d9fbf17d/native_assets.yaml: 
