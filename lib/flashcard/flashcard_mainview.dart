@@ -87,7 +87,8 @@ class _flashcardState extends State<flashcard> {
                     textEn: _flashcards[_currentIndex].answerEn,
                     textEs: _flashcards[_currentIndex].answerEs,
                     onToggleLanguage: () => setState(() => _isEnglish = !_isEnglish),
-                    isEnglish: _isEnglish, flutterTts: flutterTts,
+                    isEnglish: _isEnglish,
+                    flutterTts: flutterTts,
                   ),
                 ),
               ),
@@ -108,8 +109,8 @@ class _flashcardState extends State<flashcard> {
       ),
       debugShowCheckedModeBanner: false,
     );
-  }
 
+  }
   void showNextCard(){
     setState(() {
       _currentIndex = (_currentIndex + 1 < _flashcards.length) ? _currentIndex + 1 : 0;

@@ -9,7 +9,7 @@ class FlashcardView extends StatelessWidget {
   final bool isEnglish;
   final FlutterTts flutterTts;
 
-  const FlashcardView({
+  FlashcardView({
     Key? key,
     required this.textEn,
     required this.textEs,
