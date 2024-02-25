@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		h/voN4C732VxAbY+Uyul9Qdjxt8=
+		TKpX9qiXrS5oSLqteXOwPJn0fSg=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		4vKgEfAK0bICsGqTTQBKLsoXU+4=
+		UsZj0+UIZLLsS3/yET6yYOuJKwE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		qBg1g3g1GV/Cff6MRWCtVSxKfgI=
+		kWrcZrwF06wUCGyb+f9YDjpE//o=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		Fw+KP5Q/bpnRfDAVBTKnZH1ID7I=
+		K8/7jT1JSPDySM28tMryvUa4Zc8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -104,6 +104,10 @@
 		<data>
 		pFiuK+jBk3g/O8LUIS+hHLfkuVM=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/quiz/one_third_lemon.png</key>
+		<data>
+		2vRYvGlgRZdaQzfjypns3ew5tz0=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/quiz/three_fourth_cake.png</key>
 		<data>
 		Ol2sDsvko/y2+n/pbXmr4iEZM6Y=
@@ -118,7 +122,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		BFJPtV3Hjq2hsS+A4lt3T8jgtNc=
+		HKErKTAypLmLwlcL8kjtX2Z3790=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -238,7 +242,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		+LuXmnwHLATLOsDn1xrJAyoKJ2Q=
+		69Xa1yx7GjERj+OkVMRS0UO9hVE=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -321,7 +325,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JWykau77xMC5zg4BQUhS4tB87LiK7aRX0tjbAWjtres=
+			EAShF5kRaThRgZuCcDACQkz9w8CTUZaBDirYdt6DIA0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -335,21 +339,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Kb5SAj5EHH9U3/0/7VuUeOBFoAWmZ0pNbiTgK2gWePk=
+			/cygUDlfGO40CaVRLg+qzXRvIurLBqWTdS6w0aKFkU8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PFdBOXASaGSrem4m491wGBuik1IFBZaz5dmraps01RE=
+			6iAo1pGuj2ZSahRSIV1MHRMIy8olbavfF4n3bolLSRg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			M9/rE+LH0umyPhJWNfSONE+LaWqChilDHxd9u+vvSUk=
+			IXUVopGFv0HSCSvUesaff2wRsa3L4wf6Gbv69mFSIBg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -422,6 +426,13 @@
 			5VCbnkuGyHs8b5Dgq8ABv2KLu3IqjApOc4f5zAxkooI=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/quiz/one_third_lemon.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TyJIKef885u5UV7VhiTRFrY9X0t7Q6gIHOCr4IJ85/Q=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/quiz/three_fourth_cake.png</key>
 		<dict>
 			<key>hash2</key>
@@ -447,7 +458,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AqXQa9TiQ3TwyFA/2/i40y1wCME9vdpDpnPFjoBIbyI=
+			arKyanbWvTSJ5CtfHqgmDwv5K02ObTKl6BE9JXAx+yY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

@@ -16,14 +16,17 @@ class _home extends State<home> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'FRACTIONS',
               style: TextStyle(
-                fontSize: 75,
+                fontSize: 85,
               ),
             ),
             Image.asset(
               'assets/fraction_logo.png',
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
             ),
           ],
         ),

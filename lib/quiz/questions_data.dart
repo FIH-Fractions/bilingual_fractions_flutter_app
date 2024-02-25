@@ -17,5 +17,12 @@ final List<QuizQuestion> questions = [
     answers: ["Three Fourth", "One Fourth", "Half", "None"],
     correctAnswerIndex: 1,
   ),
+
+  QuizQuestion(
+    question: "How much Lemon is this?",
+    imagePath: "assets/quiz/one_third_lemon.png",
+    answers: ["Three Fourth", "One Fourth", "Two Thirds", "One Third"],
+    correctAnswerIndex: 3,
+  ),
   // More questions...
 ];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class FlashcardView extends StatelessWidget {
 
@@ -6,13 +7,15 @@ class FlashcardView extends StatelessWidget {
   final String textEs;
   final VoidCallback onToggleLanguage;
   final bool isEnglish;
+  final FlutterTts flutterTts;
 
-  FlashcardView({
+  const FlashcardView({
     Key? key,
     required this.textEn,
     required this.textEs,
     required this.onToggleLanguage,
     required this.isEnglish,
+    required this.flutterTts,
   }) : super(key: key);
 
   @override
@@ -37,13 +40,15 @@ class FlashcardView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: Icon(Icons.volume_up_rounded),
-                  onPressed: () {
-                    // Handle the volume action
+                  icon: const Icon(Icons.volume_up_rounded),
+                  onPressed: () async {
+                    var text = isEnglish ? textEn : textEs;
+                    await flutterTts.setLanguage(isEnglish ? "en-US" : "es-ES");
+                    await flutterTts.speak(text);
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.translate_rounded),
+                  icon: const Icon(Icons.translate_rounded),
                   onPressed: onToggleLanguage,
                 ),
               ],

@@ -87,17 +87,17 @@ class _flashcardState extends State<flashcard> {
                     textEn: _flashcards[_currentIndex].answerEn,
                     textEs: _flashcards[_currentIndex].answerEs,
                     onToggleLanguage: () => setState(() => _isEnglish = !_isEnglish),
-                    isEnglish: _isEnglish,
+                    isEnglish: _isEnglish, flutterTts: flutterTts,
                   ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(onPressed: _currentIndex > 0 ? showPreviousCard : null, icon: Icon(Icons.arrow_back_rounded, size: 35,)),
+                  IconButton(onPressed: _currentIndex > 0 ? showPreviousCard : null, icon: const Icon(Icons.arrow_back_rounded, size: 35,)),
                   Text(
                     '${_currentIndex + 1} / ${_flashcards.length}', // Display current index + 1 and total count
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                   IconButton(onPressed: _currentIndex < _flashcards.length - 1 ? showNextCard : null, icon: Icon(Icons.arrow_forward_rounded, size: 35,)),
                 ],
@@ -108,8 +108,8 @@ class _flashcardState extends State<flashcard> {
       ),
       debugShowCheckedModeBanner: false,
     );
-
   }
+
   void showNextCard(){
     setState(() {
       _currentIndex = (_currentIndex + 1 < _flashcards.length) ? _currentIndex + 1 : 0;
