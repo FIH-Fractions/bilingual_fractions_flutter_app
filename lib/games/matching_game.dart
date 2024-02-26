@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'apples_game.dart';
+import 'eating_fruits_game.dart';
 
 class MatchingGame extends StatefulWidget {
   const MatchingGame({Key? key}) : super(key: key);
@@ -170,7 +170,7 @@ class _MatchingGameState extends State<MatchingGame> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ApplesGame()),
+                  MaterialPageRoute(builder: (context) => EatingFruitsGame()),
                 );
               },),
           ],

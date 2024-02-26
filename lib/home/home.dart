@@ -24,8 +24,8 @@ class _home extends State<home> {
             ),
             Image.asset(
               'assets/fraction_logo.png',
-              width: 200,
-              height: 200,
+              width: 180,
+              height: 180,
               fit: BoxFit.cover,
             ),
           ],

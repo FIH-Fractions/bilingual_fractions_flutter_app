@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ApplesGame extends StatefulWidget {
+class EatingFruitsGame extends StatefulWidget {
 
   @override
-  _ApplesGameState createState() => _ApplesGameState();
+  _EatingFruitsGameState createState() => _EatingFruitsGameState();
 }
 
 class GameSet {
@@ -42,9 +42,18 @@ final List<GameSet> gameset = [
     totalCount: 8,
     imageSize: 200,
   ),
+
+  GameSet(
+    question: "Eat One Third of the Grapes Bunch",
+    originalImagePath: 'assets/games/grapes.jpg',
+    replacementImagePath: 'assets/games/eaten_grapes.jpg',
+    expectedCount: 1,
+    totalCount: 3,
+    imageSize: 350,
+  ),
 ];
 
-class _ApplesGameState extends State<ApplesGame> {
+class _EatingFruitsGameState extends State<EatingFruitsGame> {
   late List<bool> clickedStatus;
 
   int _currentIndex = 0;
@@ -101,6 +110,7 @@ class _ApplesGameState extends State<ApplesGame> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          const SizedBox(height: 25,),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
