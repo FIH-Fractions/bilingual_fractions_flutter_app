@@ -1,14 +1,14 @@
-import 'package:bilingual_fractions_flutter_app/games/apples_game.dart';
 import 'package:flutter/material.dart';
+import 'apples_game.dart';
 
-class matching_game extends StatefulWidget {
-  const matching_game({Key? key}) : super(key: key);
+class MatchingGame extends StatefulWidget {
+  const MatchingGame({Key? key}) : super(key: key);
 
   @override
-  _MatchGameState createState() => _MatchGameState();
+  _MatchingGameState createState() => _MatchingGameState();
 }
 
-class _MatchGameState extends State<matching_game> {
+class _MatchingGameState extends State<MatchingGame> {
   late List<ItemModel> items;
   late List<ItemModel> shuffledItems;
   late int score;
@@ -35,8 +35,9 @@ class _MatchGameState extends State<matching_game> {
 
   @override
   Widget build(BuildContext context) {
-    if(items.length == 0)
+    if(items.isEmpty) {
       gameOver = true;
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -50,14 +51,14 @@ class _MatchGameState extends State<matching_game> {
         ),
         Text.rich(TextSpan(
             children: [
-              TextSpan(text: "Score: ", style: const TextStyle(fontSize: 25)),
+              const TextSpan(text: "Score: ", style: TextStyle(fontSize: 25)),
               TextSpan(text: "$score", style: const TextStyle(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
               ))
             ]
-        )
+          )
         ),
         if(!gameOver)
           Expanded(
@@ -78,7 +79,7 @@ class _MatchGameState extends State<matching_game> {
                             alignment: Alignment.center,
                             child: Text(
                               item.name,
-                              style: TextStyle(color: Colors.grey, fontSize: 25),
+                              style: const TextStyle(color: Colors.grey, fontSize: 25),
                             ),
                           ),
                           feedback: Material(
@@ -90,7 +91,7 @@ class _MatchGameState extends State<matching_game> {
                               alignment: Alignment.center,
                               child: Text(
                                 item.name,
-                                style: TextStyle(color: Colors.white, fontSize: 25),
+                                style: const TextStyle(color: Colors.white, fontSize: 25),
                               ),
                             ),
                           ),
@@ -101,7 +102,7 @@ class _MatchGameState extends State<matching_game> {
                             alignment: Alignment.center,
                             child: Text(
                               item.name,
-                              style: TextStyle(color: Colors.white, fontSize: 25),
+                              style: const TextStyle(color: Colors.white, fontSize: 25),
                             ),
                           ),
                         ),
@@ -146,12 +147,18 @@ class _MatchGameState extends State<matching_game> {
               ],
             ),
           ),
+        if(gameOver)
+          const Text("Well Played!", style: TextStyle(
+            color: Colors.purple,
+            fontWeight: FontWeight.bold,
+            fontSize: 24.0,),
+          ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(icon: Icon(Icons.arrow_back_rounded, size: 35,), onPressed: () {  },),
+            IconButton(icon: const Icon(Icons.arrow_back_rounded, size: 35,), onPressed: () {  },),
             IconButton(
-              icon: Icon(Icons.replay, size: 35,),
+              icon: const Icon(Icons.replay, size: 35,),
               onPressed: () {
                 setState(() {
                   initGame();
@@ -159,21 +166,15 @@ class _MatchGameState extends State<matching_game> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.arrow_forward_rounded, size: 35,),
+              icon: const Icon(Icons.arrow_forward_rounded, size: 35,),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Apples()),
+                  MaterialPageRoute(builder: (context) => ApplesGame()),
                 );
               },),
           ],
         ),
-        if(gameOver)
-          const Text("Game Over!", style: TextStyle(
-            color: Colors.red,
-            fontWeight: FontWeight.bold,
-            fontSize: 24.0,),
-          ),
       ],
     );
   }
