@@ -156,7 +156,7 @@ class _MatchingGameState extends State<MatchingGame> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(icon: const Icon(Icons.arrow_back_rounded, size: 35,), onPressed: () {  },),
+            IconButton(icon: const Icon(Icons.arrow_back_rounded, size: 35,), onPressed: (null)),
             IconButton(
               icon: const Icon(Icons.replay, size: 35,),
               onPressed: () {

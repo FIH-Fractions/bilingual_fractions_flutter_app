@@ -11,28 +11,36 @@ class GameSet {
   final String originalImagePath;
   final String replacementImagePath;
   final int expectedCount;
+  final int totalCount;
+  final double imageSize;
 
   GameSet({
     required this.question,
     required this.originalImagePath,
     required this.replacementImagePath,
     required this.expectedCount,
+    required this.totalCount,
+    required this.imageSize,
   });
 }
 
 final List<GameSet> gameset = [
   GameSet(
-    question: "Eat Four Fifths of the Apples",
+    question: "Eat Two Fifths of the Apples",
     originalImagePath: 'assets/games/apple.jpg',
     replacementImagePath: 'assets/games/eaten_apple.jpg',
-    expectedCount: 4,
+    expectedCount: 2,
+    totalCount: 5,
+    imageSize: 300,
   ),
 
   GameSet(
     question: "Eat Half of the Bananas",
     originalImagePath: 'assets/games/banana.jpg',
     replacementImagePath: 'assets/games/eaten_banana.jpg',
-    expectedCount: 3,
+    expectedCount: 4,
+    totalCount: 8,
+    imageSize: 200,
   ),
 ];
 
@@ -43,8 +51,6 @@ class _ApplesGameState extends State<ApplesGame> {
   int score = 0;
   bool gameOver = false;
   late int replacedCount;
-  late int originalCount;
-  late int totalCount;
 
   @override
   void initState() {
@@ -53,17 +59,14 @@ class _ApplesGameState extends State<ApplesGame> {
   }
 
   initGame() {
-    clickedStatus = List<bool>.filled(5, false);
+    clickedStatus = List<bool>.filled(gameset[_currentIndex].totalCount, false);
     gameOver = false;
-    score = 0;
   }
 
   void onSubmit() {
     replacedCount = clickedStatus.where((status) => status).length;
-    originalCount = clickedStatus.length - replacedCount;
-    totalCount = clickedStatus.length;
 
-    if (replacedCount == gameset[0].expectedCount) {
+    if (replacedCount == gameset[_currentIndex].expectedCount) {
       score += 10;
     } else {
       score -= 5;
@@ -73,7 +76,7 @@ class _ApplesGameState extends State<ApplesGame> {
     setState(() {});
   }
 
-  void _showNextQuestion() {
+  void showNextSet() {
     setState(() {
       gameOver=false;
       if (_currentIndex < gameset.length - 1) {
@@ -82,7 +85,7 @@ class _ApplesGameState extends State<ApplesGame> {
     });
   }
 
-  void _showPreviousQuestion() {
+  void showPreviousSet() {
     setState(() {
       if (_currentIndex > 0) {
         _currentIndex--;
@@ -98,12 +101,12 @@ class _ApplesGameState extends State<ApplesGame> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(16.0),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Eat Three Fifths of the Apples',
+              currentSet.question,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
             ),
           ),
           Text.rich(TextSpan(
@@ -115,7 +118,7 @@ class _ApplesGameState extends State<ApplesGame> {
                   fontSize: 25,
                 ))
               ]
-          )
+            )
           ),
           if (!gameOver)
             Expanded(
@@ -130,8 +133,8 @@ class _ApplesGameState extends State<ApplesGame> {
                         });
                       },
                       child: Container(
-                        width: 300, // Adjust the width as needed
-                        height: 300, // Adjust the height as needed
+                        width: currentSet.imageSize,
+                        height: currentSet.imageSize,
                         child: Image.asset(
                           clickedStatus[index] ? currentSet.replacementImagePath : currentSet.originalImagePath,
                           key: UniqueKey(),
@@ -143,7 +146,7 @@ class _ApplesGameState extends State<ApplesGame> {
               ),
             ),
           if (gameOver)
-            Text("\nEaten Apples: $replacedCount\nFraction of Eaten Apples to Total Apples: $replacedCount/$totalCount\n\n${replacedCount == currentSet.expectedCount ? "Yayyyy! You've won" : "Oops! You didn't match the fraction"}",
+            Text("\nEaten Fruits: $replacedCount\nFraction of Eaten Fruits to Total Fruits: $replacedCount/${currentSet.totalCount}\n\n${replacedCount == currentSet.expectedCount ? "Yayyyy! You've won" : "Oops! You didn't match the fraction"}",
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.black,
@@ -155,9 +158,16 @@ class _ApplesGameState extends State<ApplesGame> {
             children: [
               IconButton(
                 icon: const Icon(Icons.arrow_back_rounded, size: 35),
-                onPressed: () => {
-                _currentIndex > 0 ? _showPreviousQuestion() : null
-                }
+                onPressed: () {
+                  if (_currentIndex > 0) {
+                    showPreviousSet();
+                    setState(() {
+                      initGame();
+                    });
+                  } else {
+                    Navigator.pop(context); // If at the first index, pop the current context
+                  }
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.replay, size: 35),
@@ -183,10 +193,14 @@ class _ApplesGameState extends State<ApplesGame> {
                 ),
               IconButton(
                 icon: const Icon(Icons.arrow_forward_rounded, size: 35),
-                onPressed: () {
-                  _currentIndex < gameset.length - 1 ? _showNextQuestion : null;
-                },
+                onPressed: _currentIndex < gameset.length - 1 ? () {
+                  showNextSet();
+                  setState(() {
+                    initGame();
+                  });
+                } : null, // This disables the button when on the last index
               ),
+
             ],
           ),
           const SizedBox(height: 25,),
