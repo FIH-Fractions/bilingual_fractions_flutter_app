@@ -1,3 +1,4 @@
+import 'package:bilingual_fractions_flutter_app/games/fruits_basket_game.dart';
 import 'package:flutter/material.dart';
 
 class EatingFruitsGame extends StatefulWidget {
@@ -27,8 +28,8 @@ class GameSet {
 final List<GameSet> gameset = [
   GameSet(
     question: "Eat Two Fifths of the Apples",
-    originalImagePath: 'assets/games/apple.jpg',
-    replacementImagePath: 'assets/games/eaten_apple.jpg',
+    originalImagePath: 'assets/games/apple.png',
+    replacementImagePath: 'assets/games/eaten_apple.png',
     expectedCount: 2,
     totalCount: 5,
     imageSize: 300,
@@ -36,8 +37,8 @@ final List<GameSet> gameset = [
 
   GameSet(
     question: "Eat Half of the Bananas",
-    originalImagePath: 'assets/games/banana.jpg',
-    replacementImagePath: 'assets/games/eaten_banana.jpg',
+    originalImagePath: 'assets/games/banana.png',
+    replacementImagePath: 'assets/games/eaten_banana.png',
     expectedCount: 4,
     totalCount: 8,
     imageSize: 200,
@@ -45,8 +46,8 @@ final List<GameSet> gameset = [
 
   GameSet(
     question: "Eat One Third of the Grapes Bunch",
-    originalImagePath: 'assets/games/grapes.jpg',
-    replacementImagePath: 'assets/games/eaten_grapes.jpg',
+    originalImagePath: 'assets/games/grapes.png',
+    replacementImagePath: 'assets/games/eaten_grapes.png',
     expectedCount: 1,
     totalCount: 3,
     imageSize: 350,
@@ -203,12 +204,20 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                 ),
               IconButton(
                 icon: const Icon(Icons.arrow_forward_rounded, size: 35),
-                onPressed: _currentIndex < gameset.length - 1 ? () {
-                  showNextSet();
-                  setState(() {
-                    initGame();
-                  });
-                } : null, // This disables the button when on the last index
+                onPressed: () {
+                  if (_currentIndex < gameset.length - 1) {
+                    showNextSet();
+                    setState(() {
+                      initGame();
+                    });
+                  }
+                  else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FruitsBasketGame()),
+                  );
+                };
+                },
               ),
 
             ],
