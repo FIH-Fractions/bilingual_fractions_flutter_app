@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		m/0AomjImyjTHMxOJaxMdOIpg8k=
+		5WMrqxGOpshDpLEljLoBt12cGGU=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		p+RZL1sNWrKlp24S7CrcFo0FJg0=
+		m+os4lEztbOm++qTRWDU/xRZCBk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		RRXxec4VCNKuEOKRpKj0DsLZPZg=
+		V1MVRs8MGm9I41RPoUdXHxEpTwY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		bLFYDXf4r3jBDASx/9a3dUTQskc=
+		sUoJH/ubsPSoTOqyskYynwRORgc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -86,43 +86,43 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/fraction_logo.png</key>
 		<data>
-		nUD/kRHJQJ5zXUtYmLQ8uWdflGo=
-		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/apple.jpg</key>
-		<data>
-		j+SS9wlVrK61iAkDZPm1m8Hhqt8=
+		g6VzInvNjJSVb1CS07xEOVKhiBk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/apple.png</key>
 		<data>
 		1Go7PPgHH6VBkYmxNs6rNLjA/e8=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/banana.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/banana.png</key>
 		<data>
-		dvmZlxvzClZwdYSTPLi/3u+fzOs=
+		3qWsV2UfK1l2KlyTahJ5O+KuYKc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/basket.png</key>
 		<data>
 		v3e1epbiT2v7E+QEnCcHzqCzw1c=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_apple.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_apple.png</key>
 		<data>
-		mXfJQMMhMnuA/MQZPsS1ZmFogfw=
+		sH9ov5vamsSFUc2gGhyz4IvyYSM=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_banana.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_banana.png</key>
 		<data>
-		MGxoY/v/MCBh0p1fJiWtoUWNhzA=
+		XQfchMZHrcovPHRYdPnPxPYvOSo=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_grapes.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_grapes.png</key>
 		<data>
-		aazFsnEXGXSWIDmIN2RlE5o37Uk=
+		9aMdmb+awoF0vFU1T95DLqft3lY=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/grapes.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/grapes.png</key>
 		<data>
-		JWo5/2MpMT0iFrTMzNDXSwpRODk=
+		0MakZ+2UMxKeIGZfh649VUUSr1k=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/half.png</key>
 		<data>
 		mUlq3w1mMeklKRqRrtl/OGLqf5A=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/lime.png</key>
+		<data>
+		uQn/rHaUw2a88Xx/0l1/Xx8G31s=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/one_tenth.png</key>
 		<data>
@@ -154,7 +154,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		1LQd8VYP8ZX1rn2doJwNF6G7aFg=
+		IGCAElU5huc69uJoFz6EduSwdno=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -357,7 +357,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			n93V8ZzQvvqmFgxy7L3kk260ywC0EeXN36ATguAYc7I=
+			oMuZY2TIICPiSLejgRDbZDNXtx5gV/BasmD8Ow/C7Es=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -371,21 +371,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WmIhvrleC4EmUBoUbk6snrvwFmMknXzrWpCU87Z3zPM=
+			1W3VoPOSZlsy+UtO/mndhoXpvdS8s3LwpfwB6Oj0k6U=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uswn9FWHTjtb5aOJ8mDWsYuqelzkYQCNT0LoezdaV8k=
+			IwbdklacYq15fu/OC0uXI1SDNsK+sEiI7MTLi5OdIGM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CYjY4q/5bB6jaFmsirwEs49Kf7GF0igRAna+pXxiUHU=
+			9TOEb4B1bsxNZMtXtbM2r5hglbZUWc7UFzL9WjNh53U=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -427,14 +427,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2DYdIEy4mfhS1WTmGFN0E+c22Yz1VRghBRQc5YxXA4c=
-			</data>
-		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/apple.jpg</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			yLhiKQpqcC8jy1bF7CK5ols0BbrXj3mdNQ8konAcbv8=
+			U+ActY3DaD8ZTN8u/Y3OGsYwmym9N06Z5GK3uoZWaMY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/apple.png</key>
@@ -444,11 +437,11 @@
 			Zix5WsX26POACEORSU9zpeGZ3l9d3vIgQSFza3BRPD0=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/banana.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/banana.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3MwxhP2P283my8/JIbHz0svTKnZ/F/f3OEjLywjziJI=
+			3qV5v0nEvClqI8fAJsAp0MyxH5Unq/MDhkLWXBelKXQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/basket.png</key>
@@ -458,32 +451,32 @@
 			mP5D6z4A79esZR1ek9y8qdc869FRX/X7Q5DkPJicDm4=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_apple.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_apple.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fMOBjzK4vzfJDPfu6/5V0YmUc7OexLvvQlNg+jMf480=
+			YODsxBnfO+IBOPrDCFUKmagO/33wSMoXmOCM61O7P1U=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_banana.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_banana.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ldI6GNveIyUL/pVOvo4B2th/dRIO3ueN1sxz/gwg1Ao=
+			VoCXVr8spRRgcU5+T61NRJRGa5PxMRdoIsWH0DEVYn4=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_grapes.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/eaten_grapes.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			D6jx7r5//tpfPsZNhaOXkTm04w37YZaYme/XzlYJICo=
+			ME1JdEQWl/jKJvQcfWyXF4C+h0aIqBnjMLPeIF00pwM=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/games/grapes.jpg</key>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/grapes.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Fvvc9HcfKqUG39cvGvpkPMX4M/KL/xKANJmXijBAvdo=
+			yF90qAxdX5GzpzXsvy4ZpbzGVdlauZmvA4ksVCBhMOg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/half.png</key>
@@ -491,6 +484,13 @@
 			<key>hash2</key>
 			<data>
 			0ugYB3e9jPcrrzhXo4r8s6dHBJpuY5G5I9uFqM50GME=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/games/lime.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kw40yIlI5WrYpHBwoSEZbTlg8BVGyd8M0+6s+dUqbkw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/games/one_tenth.png</key>
@@ -546,7 +546,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GWrumIsgykbq6WRcZlsR8H0KQwWeg+XxaWJa2BIWLcA=
+			tg1YMU2sVfbtEOM2BxZjSpfOGfRx7SjYPdPKG3Epjgk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

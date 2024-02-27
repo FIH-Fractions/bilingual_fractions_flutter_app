@@ -57,6 +57,10 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
     ];
   }
 
+  void onSubmit() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Fruit> inBasketFruits = fruits.where((fruit) => fruit.inBasket).toList();
@@ -113,7 +117,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
 
                   int row = 0;
                   int cumulative = 0;
-                  basketTop = 75;
+                  basketTop = 125;
 
                   for (int i = 0; i < gridPattern.length; i++) {
                     cumulative += gridPattern[i];
@@ -137,7 +141,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
                     left: left,
                     child: GestureDetector(
                       onTap: () => isFruitInBasket(fruit),
-                      child: Image.asset(fruit.imagePath, width: 120, height: 120),
+                      child: Image.asset(fruit.imagePath, width: 110, height: 110),
                     ),
                   );
                 }).toList(),
@@ -162,6 +166,19 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
                     initGame();
                   });
                 },
+              ),
+              ElevatedButton(
+                  onPressed: onSubmit,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    onPrimary: Colors.black,
+                    minimumSize: const Size(95, 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    ),
+                  ),
+                  child: const Text('Submit', style: TextStyle(fontSize: 18)),
               ),
               IconButton(
                 icon: const Icon(Icons.arrow_forward_rounded, size: 35),
