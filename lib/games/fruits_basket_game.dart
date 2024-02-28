@@ -1,4 +1,7 @@
+import 'package:bilingual_fractions_flutter_app/games/games.dart';
 import 'package:flutter/material.dart';
+
+import '../main.dart';
 
 class FruitsBasketGame extends StatefulWidget {
   @override
@@ -29,6 +32,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
   // A list to keep track of the fruits in the basket
   List<String> fruitsInBasket = [];
   List<int> gridPattern = [2, 3, 2];
+  int score = 0;
 
   void isFruitInBasket(Fruit fruit) {
     setState(() {
@@ -43,6 +47,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
   }
 
   void initGame(){
+    score=0;
     fruits = [
       Fruit(type: 'apple', imagePath: 'assets/games/apple.png', inBasket: false),
       Fruit(type: 'apple', imagePath: 'assets/games/apple.png',),
@@ -57,8 +62,37 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
     ];
   }
 
-  void onSubmit() {
+  void showTemporaryPopup(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          content: Container(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22)),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
+  void onSubmit() {
+  setState(() {
+    score+=10;
+    showTemporaryPopup('Your Answer is Correct! +10 points');
+  });
   }
 
   @override
@@ -80,6 +114,17 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 24),
             ),
+          ),
+          Text.rich(TextSpan(
+              children: [
+                const TextSpan(text: "Score: ", style: TextStyle(fontSize: 24)),
+                TextSpan(text: "$score", style: const TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ))
+              ]
+          )
           ),
           Expanded(
             child: Stack(
@@ -168,7 +213,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
                 },
               ),
               ElevatedButton(
-                  onPressed: onSubmit,
+                  onPressed: () {onSubmit();},
                   style: ElevatedButton.styleFrom(
                     primary: Colors.green,
                     onPrimary: Colors.black,
