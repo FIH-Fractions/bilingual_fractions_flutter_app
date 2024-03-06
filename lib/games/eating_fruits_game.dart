@@ -108,16 +108,18 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
     final currentSet = gameset[_currentIndex];
 
     return Scaffold(
+      appBar: AppBar(
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(height: 25,),
+          //const SizedBox(height: 25,),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               currentSet.question,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 25),
             ),
           ),
           Text.rich(TextSpan(
@@ -212,10 +214,6 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                     });
                   }
                   else {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FruitsBasketGame()),
-                  );
                 };
                 },
               ),

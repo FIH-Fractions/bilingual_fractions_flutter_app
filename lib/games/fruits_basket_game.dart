@@ -103,16 +103,18 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
     double gridHeight = gridPattern.fold(0, (previousValue, element) => previousValue + element) * 100; // Assuming each fruit's height is 100
     double basketTop = 75;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Fill The Basket'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(height: 25),
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              'Fill the Basket such that it contains One Seventh Apples, Two Seventh Grapes, Three Seventh Banana, One Seventh Lime',
+              'with One Seventh Apples, Two Seventh Grapes, Three Seventh Banana, One Seventh Lime',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 20),
             ),
           ),
           Text.rich(TextSpan(
@@ -162,7 +164,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
 
                   int row = 0;
                   int cumulative = 0;
-                  basketTop = 125;
+                  basketTop = 100;
 
                   for (int i = 0; i < gridPattern.length; i++) {
                     cumulative += gridPattern[i];

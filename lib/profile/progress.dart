@@ -58,7 +58,32 @@ class _progressState extends State<progress> {
                       ],
                     ),
                   ),
-                  Center(child: Text('Badges')),
+                  Center(
+                    child: Container(
+                      height: 450, // Set the height of the grid
+                      width: 450, // Set the width of the grid
+                      child: GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3, // Number of columns
+                          crossAxisSpacing: 60, // Space between columns
+                          mainAxisSpacing: 30, // Space between rows
+                        ),
+                        itemCount: 4, // Number of items in the grid (9 images)
+                        itemBuilder: (context, index) {
+                          // Replace 'assets/image_$index.png' with your actual asset path
+                          String assetName = 'assets/badges/i_${index + 1}.jpeg'; // Assuming your images are named image_1.png, image_2.png, etc.
+                          return Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(assetName),
+                                fit: BoxFit.contain, // Fill the box with the image
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
