@@ -89,7 +89,7 @@ class _QuizPageState extends State<QuizPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             children: <Widget>[
               Text(
@@ -97,14 +97,14 @@ class _QuizPageState extends State<QuizPage> {
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 15.0),
               Image.asset(
                 currentQuestion.imagePath,
-                width: 300,
-                height: 300,
-                fit: BoxFit.cover,
+                width: 500,
+                height: 340,
+                fit: BoxFit.contain,
               ),
-              SizedBox(height: 40.0), // Space above the answer row
+              SizedBox(height: 15.0), // Space above the answer row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: currentQuestion.answers.asMap().entries.map((entry) {

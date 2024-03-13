@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		7EIAgLV7o+T95qidZO3ZqRdV6Ow=
+		6NIbpKNr3oiCVC10R3F5Sigzf5Y=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		NjHNUD50EZU2GHpZ///p2u0CAc8=
+		BceBhB9ET8EesLOPHcXR1xs/Iag=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		V1MVRs8MGm9I41RPoUdXHxEpTwY=
+		pbNTFupryJaGjV6Tt1t4Kyd9XBE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		sUoJH/ubsPSoTOqyskYynwRORgc=
+		Zew33nZDRrw7/hDR5aOMjKiFrus=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -71,6 +71,30 @@
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
 		ocKK0M1ZvLWarTT8i7Q675IZk1I=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_1.jpeg</key>
+		<data>
+		8eKeHQxawNwwFEPZ+fObBZmimeU=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_2.jpeg</key>
+		<data>
+		oR5D5binbQxPk7ptXFz7Gi6q76Q=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_3.jpeg</key>
+		<data>
+		fYk3o06y9c+fyVRrGOVOnF+5jvQ=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_4.jpeg</key>
+		<data>
+		eJWC+p9EMII4p0ghcxq9Hgm9alU=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_5.jpeg</key>
+		<data>
+		GfCx3sLszAIq6ZTN8Y/30Un+pYQ=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_6.jpeg</key>
+		<data>
+		96Y838xvP7L2G2Q2YZhj/2SbQx0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/flashcards/half_pizza.png</key>
 		<data>
@@ -136,6 +160,14 @@
 		<data>
 		pFiuK+jBk3g/O8LUIS+hHLfkuVM=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/quiz/flowers.png</key>
+		<data>
+		lj/GhMpTRMPHYuzl0b/fQbL6dek=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/quiz/fruits1.png</key>
+		<data>
+		IxGfjL0uVWYp/6qaIcubFGm/WPg=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/quiz/one_third_lemon.png</key>
 		<data>
 		2vRYvGlgRZdaQzfjypns3ew5tz0=
@@ -154,7 +186,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		gb4kv1+pvS6IqpCAaEUbom2hn+w=
+		Bi1TlucWCXhTD6hrxlyOsu3gZMU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -357,7 +389,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ck3w/npKuLztAIDsRmwg0/CrF7lwbp8tALDEk2/TcMo=
+			jRqmDCSFcwMoO5zXQvL5m11exVxXHTgTOaQMWaInYd4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -371,21 +403,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2N1lbbjyWIgNg0Aau65xfQkzLSF1Uy1yN4+pdLJuh5w=
+			/ktK9TrpFcMRe2w8HTekZBl3EkBUbgyueZgnMchgFT0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IwbdklacYq15fu/OC0uXI1SDNsK+sEiI7MTLi5OdIGM=
+			UOoYYCsyYO9vPaw/65uy1UPafDmWgpX1x8hnaSNgGu8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9TOEb4B1bsxNZMtXtbM2r5hglbZUWc7UFzL9WjNh53U=
+			HFw3KPF799SccNdCMSUJbpkSnCL1nElZt+FktJTciRU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -400,6 +432,48 @@
 			<key>hash2</key>
 			<data>
 			esM9ULbOrTQcgnMeo/ToCTCMVijfxozRylcHYx7xTYc=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_1.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			55BWPeuFWZRsP2IOi4Lhn9030TbdfK5YWAGSjPal72s=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_2.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sdF9xQSXksUIq8anqRXGkNriYQTTuf4jr2/5VKy/SVs=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_3.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			dss/FMtcAZ3xO9G8Hye61PcxPMnej6IEhICKOqpMBBs=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_4.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m/E9dSKn2lLE9NppdE6j/f7c75jli2gto1WPV5EZfcM=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_5.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Z4q45hr2kL7E8GeCiF1GYDPktMzGIlhMeopznspoMxE=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/badges/i_6.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m6OXfJNDXtUDJsL8hOcYHGjTFBUPdS1hXV3F+fJggxA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/flashcards/half_pizza.png</key>
@@ -514,6 +588,20 @@
 			5VCbnkuGyHs8b5Dgq8ABv2KLu3IqjApOc4f5zAxkooI=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/quiz/flowers.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZRhSpP+9Tt4TZOpj74xmQRs9z7TuczwoR3EI3OSvofM=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/quiz/fruits1.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NqH90xpwntbdWcRlO4+x0djbhPtpPAI9r4miwHVsy/k=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/quiz/one_third_lemon.png</key>
 		<dict>
 			<key>hash2</key>
@@ -546,7 +634,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UHEZY0upAYnCPFPL647Y/M5jZ5kg5i5VBkvUtEacj54=
+			7M5XajbX/Ys8Rw9FyN8fkFoLu+rZFkUJ+Gm+39VHFQo=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

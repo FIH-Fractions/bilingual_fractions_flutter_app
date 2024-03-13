@@ -31,7 +31,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
   ];
   // A list to keep track of the fruits in the basket
   List<String> fruitsInBasket = [];
-  List<int> gridPattern = [2, 3, 2];
+  List<int> gridPattern = [1, 3, 1];
   int score = 0;
 
   void isFruitInBasket(Fruit fruit) {
@@ -89,11 +89,24 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
   }
 
   void onSubmit() {
-  setState(() {
-    score+=10;
-    showTemporaryPopup('Your Answer is Correct! +10 points');
-  });
+    setState(() {
+      // Calculate the number of each fruit type in the basket
+      int apples = fruits.where((fruit) => fruit.inBasket && fruit.type == 'apple').length;
+      int grapes = fruits.where((fruit) => fruit.inBasket && fruit.type == 'grapes').length;
+      int bananas = fruits.where((fruit) => fruit.inBasket && fruit.type == 'banana').length;
+      int limes = fruits.where((fruit) => fruit.inBasket && fruit.type == 'lime').length;
+
+      // Check if the quantities match the required numbers
+      if (apples == 1 && grapes == 2 && bananas == 1 && limes == 1) {
+        score += 10;
+        showTemporaryPopup('Your Answer is Correct! +10 points');
+      } else {
+        score -= 5; // Deduct 5 points if the combination is not correct
+        showTemporaryPopup('Incorrect! -5 points. Try again.');
+      }
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +117,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
     double basketTop = 75;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fill The Basket'),
+        title: const Text('Lets create a balanced fruit basket using fractions! Add n number of fruits including:', style: TextStyle(fontSize: 20),),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,7 +125,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              'with One Seventh Apples, Two Seventh Grapes, Three Seventh Banana, One Seventh Lime',
+              'one-nth Apples, two-nth Grapes, one-nth Bananas, one-nth Lime. Can you match each fruit to its fraction? Lets see!',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),

@@ -165,10 +165,6 @@ class _MatchingGameState extends State<MatchingGame> {
                   IconButton(
                     icon: const Icon(Icons.arrow_forward_rounded, size: 35,),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EatingFruitsGame()),
-                      );
                     },),
                 ],
               ),

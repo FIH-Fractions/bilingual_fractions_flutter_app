@@ -60,8 +60,8 @@ class _progressState extends State<progress> {
                   ),
                   Center(
                     child: Container(
-                      height: 500, // Set the height of the grid
-                      width: 500, // Set the width of the grid
+                      height: 600, // Set the height of the grid
+                      width: 600, // Set the width of the grid
                       child: GridView.builder(
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3, // Number of columns
