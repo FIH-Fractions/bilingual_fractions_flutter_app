@@ -117,7 +117,20 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
     double basketTop = 75;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lets create a balanced fruit basket using fractions! Add n number of fruits including:', style: TextStyle(fontSize: 20),),
+        title: const Text('Lets create a balanced fruit basket using fractions! Add n number of fruits including:', style: TextStyle(fontSize: 24),),
+        actions:[ Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: IconButton(
+            icon: const Icon(
+              Icons.info,
+              size: 35,
+            ),
+            onPressed: () {
+              showTemporaryPopup("Drag the fruits in the basket! Click to remove them!");
+            },
+          ),
+        ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -127,7 +140,7 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
             child: Text(
               'one-nth Apples, two-nth Grapes, one-nth Bananas, one-nth Lime. Can you match each fruit to its fraction? Lets see!',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 24),
             ),
           ),
           Text.rich(TextSpan(

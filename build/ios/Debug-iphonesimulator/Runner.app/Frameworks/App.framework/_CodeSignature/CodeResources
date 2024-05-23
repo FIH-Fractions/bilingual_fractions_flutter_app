@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		pbNTFupryJaGjV6Tt1t4Kyd9XBE=
+		jF9j96o7X9L/RzDsrlansHyoAlM=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		Zew33nZDRrw7/hDR5aOMjKiFrus=
+		NGwNaj5NycuiNVDktvW7dRZsb0k=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>flutter_assets/assets/.DS_Store</key>
 		<data>
-		JQitZjoynxlVBOqpO5P46ysTSLo=
+		A+eWOhLhQEeJbdn1mLrAl33f+QY=
 		</data>
 		<key>flutter_assets/assets/badges/i_1.jpeg</key>
 		<data>
@@ -120,6 +120,54 @@
 		<data>
 		+bUi/5YmhUqKk7m3F6P0+XS+KYk=
 		</data>
+		<key>flutter_assets/assets/learn/.DS_Store</key>
+		<data>
+		aO3Dma4oDrd9ZJyP/jX+m4VmyVs=
+		</data>
+		<key>flutter_assets/assets/learn/mixed.png</key>
+		<data>
+		Ao8sM9dfteGRdOWDuRN1MNgmVAU=
+		</data>
+		<key>flutter_assets/assets/learn/num_deno.png</key>
+		<data>
+		99fgegr410KFz2DQKlHUo3FtSuU=
+		</data>
+		<key>flutter_assets/assets/learn/ordinal.png</key>
+		<data>
+		G9a4bzLnKDkCGirPPBLzKmD+CL4=
+		</data>
+		<key>flutter_assets/assets/learn/pizza1.png</key>
+		<data>
+		SjEq1IQ3GGrVaSNNWS/kZVpaljg=
+		</data>
+		<key>flutter_assets/assets/learn/pizza2.png</key>
+		<data>
+		5a+vAzV8drnb6VTU/qNOPvPhJJc=
+		</data>
+		<key>flutter_assets/assets/learn/pizza3.png</key>
+		<data>
+		3V/CPL9532Jj7EaOpBSLrYYdkzk=
+		</data>
+		<key>flutter_assets/assets/learn/pizza4.png</key>
+		<data>
+		6gK9iJz9ZcEHnQj4+IksvcwSWRg=
+		</data>
+		<key>flutter_assets/assets/learn/pizza5.png</key>
+		<data>
+		xJfv6QKX/mBsBLEP9yLGFiKXI58=
+		</data>
+		<key>flutter_assets/assets/learn/pizza6.png</key>
+		<data>
+		jxmVRdhbkTfz2ITb/2HRpUCBGjQ=
+		</data>
+		<key>flutter_assets/assets/learn/pizza7.png</key>
+		<data>
+		wqr5Ofm6t/GYw39JZ42SOCQ/Z/4=
+		</data>
+		<key>flutter_assets/assets/learn/reading.png</key>
+		<data>
+		Yj9nBq+VddS9LdfxJsGLSA7WXw0=
+		</data>
 		<key>flutter_assets/assets/quiz/Half-pizza.png</key>
 		<data>
 		pFiuK+jBk3g/O8LUIS+hHLfkuVM=
@@ -150,7 +198,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		Bi1TlucWCXhTD6hrxlyOsu3gZMU=
+		gG/DNUNFqLsUrVh7tIG4ammikcw=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -171,14 +219,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UOoYYCsyYO9vPaw/65uy1UPafDmWgpX1x8hnaSNgGu8=
+			jlxhqHAen9twilWL7LNEC0IWoSnlNA7LpgMmJgfQSuY=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HFw3KPF799SccNdCMSUJbpkSnCL1nElZt+FktJTciRU=
+			HMTLCwg+2WpGmGOfJ45WC93qjJXT/WIK2PxvhAl1yv8=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -342,6 +390,83 @@
 			SW9KfKVGZqPZfHCz9tAwwfmFEqVMx5SETjrpeisbsVE=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/learn/mixed.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xpKUacXpgDmOGrmEFx/Wk/trAiG80v3hdSntjNmo5So=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/num_deno.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4eJnUQhWHHum5O+q++CbNsEk7Sn+zHkYKGHPyJtGtlA=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/ordinal.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iVzAhtzKryLII2xH/Ziw+iwyhyVsRnJ2UQC/digR0f4=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza1.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KWdrzJYGbX/uE9ocn/DW5kUYW0j0oaUTuB0ChTHSHYM=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza2.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3TLQbK715swobuoWHn5IlxefNZUOZpSJmJz4p2xCJaI=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza3.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ef9cWoezlZtSiNbn+kUbf4LCToabkiN1pzCYdSy3Ids=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza4.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yGLMlktwg64DP906hqkWqvd/G08xyeQXElZGdZLUcio=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza5.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xQaVHphTsaVZvpmAWvKC3TVbGs3p5lQB/UxmV70CKQQ=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza6.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			7ofOuQXtk/4a9R7nRXwk4Yax7WXNc+L6sAPhTy8VfTc=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/pizza7.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tbe3jfDygyR1y+gTXyUzQigncUB+PDoTPymntWyRuD8=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/learn/reading.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1nC08p7Zp/TwG3uqEhDc78BoA0z/EBp53/4fpIGkiac=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/quiz/Half-pizza.png</key>
 		<dict>
 			<key>hash2</key>
@@ -395,7 +520,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7M5XajbX/Ys8Rw9FyN8fkFoLu+rZFkUJ+Gm+39VHFQo=
+			v8wmwc/MhS2PYXfzUz/TFnPA2gxm0Lbs2Z1K+5Wwjco=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

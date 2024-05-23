@@ -27,7 +27,7 @@ class Games extends StatelessWidget {
                   height: 150, // Fixed height for uniformity
                   margin: const EdgeInsets.only(bottom: 10), // Add margin to separate tiles
                   decoration: BoxDecoration(
-                    color: Color(0xFF8502FF),
+                    color: Color(0xFF7ABDA9),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
@@ -35,7 +35,7 @@ class Games extends StatelessWidget {
                       'Match The Fractions',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: 35,
                       ),
                     ),
                   ),
@@ -54,7 +54,7 @@ class Games extends StatelessWidget {
                   height: 150, // Fixed height for uniformity
                   margin: const EdgeInsets.only(bottom: 10), // Add margin to separate tiles
                   decoration: BoxDecoration(
-                    color: Color(0xFF01E4EC),
+                    color: Color(0xFF649889),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
@@ -62,7 +62,7 @@ class Games extends StatelessWidget {
                       'Eat The Fruits',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: 35,
                       ),
                     ),
                   ),
@@ -81,7 +81,7 @@ class Games extends StatelessWidget {
                   height: 150,
                   margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
-                    color: Color(0xFFC443A5), // Choose a different color for the third tile
+                    color: Color(0xFF476E62), // Choose a different color for the third tile
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
@@ -89,7 +89,7 @@ class Games extends StatelessWidget {
                       'Fruits Basket Game', // Name of the third game
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: 35,
                       ),
                     ),
                   ),

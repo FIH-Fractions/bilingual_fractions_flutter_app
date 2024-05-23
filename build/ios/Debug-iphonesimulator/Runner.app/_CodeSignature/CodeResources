@@ -18,7 +18,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		F3d9ixB/Da6LI0LAuv+RtYdc8Hw=
+		Nuv3Yx4Tw+urPDKqgaOTQkVSi1w=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		6NIbpKNr3oiCVC10R3F5Sigzf5Y=
+		U8BRxkZywYQICfPVit9qEfbGoek=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		BceBhB9ET8EesLOPHcXR1xs/Iag=
+		vdDsLAaKxmWh+Sh7gwKzFJQXGXw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		pbNTFupryJaGjV6Tt1t4Kyd9XBE=
+		jF9j96o7X9L/RzDsrlansHyoAlM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		Zew33nZDRrw7/hDR5aOMjKiFrus=
+		NGwNaj5NycuiNVDktvW7dRZsb0k=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -156,6 +156,50 @@
 		<data>
 		+bUi/5YmhUqKk7m3F6P0+XS+KYk=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/mixed.png</key>
+		<data>
+		Ao8sM9dfteGRdOWDuRN1MNgmVAU=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/num_deno.png</key>
+		<data>
+		99fgegr410KFz2DQKlHUo3FtSuU=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/ordinal.png</key>
+		<data>
+		G9a4bzLnKDkCGirPPBLzKmD+CL4=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza1.png</key>
+		<data>
+		SjEq1IQ3GGrVaSNNWS/kZVpaljg=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza2.png</key>
+		<data>
+		5a+vAzV8drnb6VTU/qNOPvPhJJc=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza3.png</key>
+		<data>
+		3V/CPL9532Jj7EaOpBSLrYYdkzk=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza4.png</key>
+		<data>
+		6gK9iJz9ZcEHnQj4+IksvcwSWRg=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza5.png</key>
+		<data>
+		xJfv6QKX/mBsBLEP9yLGFiKXI58=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza6.png</key>
+		<data>
+		jxmVRdhbkTfz2ITb/2HRpUCBGjQ=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza7.png</key>
+		<data>
+		wqr5Ofm6t/GYw39JZ42SOCQ/Z/4=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/reading.png</key>
+		<data>
+		Yj9nBq+VddS9LdfxJsGLSA7WXw0=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/quiz/Half-pizza.png</key>
 		<data>
 		pFiuK+jBk3g/O8LUIS+hHLfkuVM=
@@ -186,7 +230,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		Bi1TlucWCXhTD6hrxlyOsu3gZMU=
+		gG/DNUNFqLsUrVh7tIG4ammikcw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -286,19 +330,19 @@
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/Info.plist</key>
 		<data>
-		sTzQr5whmFJRYraaIKtD4Q6E6nY=
+		uPOGam7wk3J1KKSQbShhvnDs+aI=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
 		<data>
-		IQDkO0HCXZP5lc0HumvdF+VPUQA=
+		geA0JQNbdUYWmydk2M+3hzRA3ng=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
 		<data>
-		jeIuEVhvVYszklYSMT2yeIt5e0Q=
+		gkba/0Mj59Rwc/tBvW5v2GCcWpk=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/Info.plist</key>
 		<data>
-		RR47xBec3jqL6+IwCJdbMeSwkgI=
+		ev0zRDZX/hOAh2Uaw7x0VtyMY2k=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -306,7 +350,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		69Xa1yx7GjERj+OkVMRS0UO9hVE=
+		Cgh2na7hQ775NVTi0iVlQrDAVwo=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -340,7 +384,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/frR1qeuje/QQXcZX0j6Irs8NlnvFnnsNFW9PJAv69I=
+			ZwHOMyy/ImXiZcDGjUAWZeWi+v5wCe/ltrSWSaX+v84=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -389,7 +433,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jRqmDCSFcwMoO5zXQvL5m11exVxXHTgTOaQMWaInYd4=
+			BHQcfUvYFqCoijt+5cumqt4NUMAGtvUejzwUJKKfuso=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -403,21 +447,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/ktK9TrpFcMRe2w8HTekZBl3EkBUbgyueZgnMchgFT0=
+			HbGlc+hsf1bR5sO2wEwb/Qkwv9gXKjTtv7+CUsVkFr0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UOoYYCsyYO9vPaw/65uy1UPafDmWgpX1x8hnaSNgGu8=
+			jlxhqHAen9twilWL7LNEC0IWoSnlNA7LpgMmJgfQSuY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HFw3KPF799SccNdCMSUJbpkSnCL1nElZt+FktJTciRU=
+			HMTLCwg+2WpGmGOfJ45WC93qjJXT/WIK2PxvhAl1yv8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -581,6 +625,83 @@
 			SW9KfKVGZqPZfHCz9tAwwfmFEqVMx5SETjrpeisbsVE=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/mixed.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xpKUacXpgDmOGrmEFx/Wk/trAiG80v3hdSntjNmo5So=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/num_deno.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4eJnUQhWHHum5O+q++CbNsEk7Sn+zHkYKGHPyJtGtlA=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/ordinal.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iVzAhtzKryLII2xH/Ziw+iwyhyVsRnJ2UQC/digR0f4=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza1.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KWdrzJYGbX/uE9ocn/DW5kUYW0j0oaUTuB0ChTHSHYM=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza2.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3TLQbK715swobuoWHn5IlxefNZUOZpSJmJz4p2xCJaI=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza3.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ef9cWoezlZtSiNbn+kUbf4LCToabkiN1pzCYdSy3Ids=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza4.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yGLMlktwg64DP906hqkWqvd/G08xyeQXElZGdZLUcio=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza5.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xQaVHphTsaVZvpmAWvKC3TVbGs3p5lQB/UxmV70CKQQ=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza6.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			7ofOuQXtk/4a9R7nRXwk4Yax7WXNc+L6sAPhTy8VfTc=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/pizza7.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tbe3jfDygyR1y+gTXyUzQigncUB+PDoTPymntWyRuD8=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/learn/reading.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1nC08p7Zp/TwG3uqEhDc78BoA0z/EBp53/4fpIGkiac=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/quiz/Half-pizza.png</key>
 		<dict>
 			<key>hash2</key>
@@ -634,7 +755,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7M5XajbX/Ys8Rw9FyN8fkFoLu+rZFkUJ+Gm+39VHFQo=
+			v8wmwc/MhS2PYXfzUz/TFnPA2gxm0Lbs2Z1K+5Wwjco=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -809,28 +930,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FN16VXYMSSigT9TmCd1RQSkQ6Rp/zVf/4reUPkEQYNU=
+			i8ycd9q9l/Y6G0SoA6+bHvJRtt5n/IBTqKLKIR0ws9I=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			u4JRfw+2QfMCplPFEd4r52tSNzlB+oplf6/2prOGZbo=
+			M1wuv7nW2WVVpJfDPmhkzLxsRkOF69H1JiqpqJEs1rE=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lAZ/lbI3+R9JBTg5aURGKheAyMmG4X3IsvX5Od0G1vo=
+			3lWJFGEWMcxVIOd23/Dudy0j68ruo0YSGjDyqYvzebE=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aWN4DUtVfyx1S6qSx3MomDMf0+eRBb32D0BtC9C8lBU=
+			nGeOOedHUOMezSG5DKAhC9Noq282+HHAWJ+Sd7rkQPo=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/PrivacyInfo.xcprivacy</key>

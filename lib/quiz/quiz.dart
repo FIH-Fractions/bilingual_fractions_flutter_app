@@ -22,7 +22,9 @@ class _QuizPageState extends State<QuizPage> {
       context: context,
       builder: (BuildContext context) {
         Future.delayed(Duration(seconds: 2), () {
-          Navigator.of(context).pop(true);
+          if (mounted) {
+            Navigator.of(context).pop(true);
+          }
         });
         return AlertDialog(
           shape:

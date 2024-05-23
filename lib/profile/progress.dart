@@ -100,9 +100,9 @@ class UserProfile extends StatelessWidget {
     return const Column(
       children: [
         CircleAvatar(
-          radius: 35,
+          radius: 40,
           backgroundColor: Color(0xfff8cc1b),
-          child: Icon(Icons.person, size: 50, color: Colors.white),
+          child: Icon(Icons.person, size: 60, color: Colors.white),
         ),
         SizedBox(height: 8),
         Text(

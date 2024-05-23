@@ -72,6 +72,31 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
     clickedStatus = List<bool>.filled(gameset[_currentIndex].totalCount, false);
     gameOver = false;
   }
+  void showTemporaryPopup(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          content: Container(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22)),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   void onSubmit() {
     replacedCount = clickedStatus.where((status) => status).length;
@@ -109,6 +134,19 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
 
     return Scaffold(
       appBar: AppBar(
+        actions:[ Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: IconButton(
+            icon: const Icon(
+              Icons.info,
+              size: 35,
+            ),
+            onPressed: () {
+              showTemporaryPopup("Click on the fruits to eat them!");
+            },
+          ),
+        ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -119,7 +157,7 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
             child: Text(
               currentSet.question,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 25),
+              style: const TextStyle(fontSize: 34),
             ),
           ),
           Text.rich(TextSpan(

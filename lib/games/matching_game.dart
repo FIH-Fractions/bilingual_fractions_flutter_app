@@ -14,6 +14,32 @@ class _MatchingGameState extends State<MatchingGame> {
   late int score;
   late bool gameOver;
 
+  void showTemporaryPopup(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          content: Container(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22)),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+  
   @override
   void initState() {
     super.initState();
@@ -40,7 +66,20 @@ class _MatchingGameState extends State<MatchingGame> {
     }
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Match The Fractions'),
+          title: const Text('Match The Fractions', style: TextStyle(fontSize: 34),),
+          actions:[ Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: IconButton(
+              icon: const Icon(
+                Icons.info,
+                size: 35,
+              ),
+              onPressed: () {
+                showTemporaryPopup("Drag the Fraction on the left to the matching answer on the right!");
+              },
+            ),
+          ),
+        ],
         ),
         body: SafeArea(
           child: Column(

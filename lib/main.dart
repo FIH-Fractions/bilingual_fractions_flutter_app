@@ -33,8 +33,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
     home(),
-    QuizPage(),
     flashcard(),
+    QuizPage(),
     Games(),
   ];
 
@@ -92,17 +92,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.school_rounded,
-              size: 35,
-            ),
-            label: 'Quizzes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.amp_stories_rounded,
               size: 35,
             ),
             label: 'Flashcards',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.school_rounded,
+              size: 35,
+            ),
+            label: 'Quizzes',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -114,6 +114,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.black,
+        selectedLabelStyle: const TextStyle(
+          fontSize: 15, // Specify your desired font size for selected labels
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 15, // Specify your desired font size for unselected labels
+        ),
         onTap: _onItemTapped,
       ),
     );

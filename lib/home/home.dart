@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bilingual_fractions_flutter_app/learn/intro.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -27,6 +28,32 @@ class _home extends State<home> {
               width: 180,
               height: 180,
               fit: BoxFit.cover,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => IntroPage()),
+                );
+              },
+              child: Container(
+                width: 370, // Adjust width to fit the screen
+                height: 130, // Fixed height for uniformity
+                margin: const EdgeInsets.only(bottom: 10), // Add margin to separate tiles
+                decoration: BoxDecoration(
+                  color: Color(0xA150B085),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Learn!',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 35,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
