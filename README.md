@@ -1,7 +1,14 @@
 # Bilingual Fractions Flutter App
 
 A bilingual mathematics application crafted to teach fractions to Hispanic children. Through a combination of quizzes, flashcards, and interactive games, this app provides an engaging learning experience. Notable features include progress tracking and the ability to seamlessly switch between Spanish and English languages.
+
+### Quiz
 ![quiz-gif](https://github.com/user-attachments/assets/e8d98ae4-a5b1-461e-a842-94713b84f381)
+
+### Games
+![games-gif](https://github.com/user-attachments/assets/3da9b174-0159-450c-84ce-a3c49479c6ed)
+
+### Flashcards
 ![flashcards-gif](https://github.com/user-attachments/assets/4c819244-7c0b-4570-9e45-725689e8055d)
 
 ## 📱 Features
