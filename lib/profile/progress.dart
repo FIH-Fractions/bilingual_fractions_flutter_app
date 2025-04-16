@@ -20,7 +20,11 @@ class _progressState extends State<progress> {
             Padding(
               padding: EdgeInsets.only(right: 10),
               child: IconButton(
-                icon: const Icon(Icons.settings_rounded, size: 35, color: Colors.black,),
+                icon: const Icon(
+                  Icons.settings_rounded,
+                  size: 35,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -50,7 +54,8 @@ class _progressState extends State<progress> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Center(child: Column(
+                  Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         CalendarView(),
@@ -63,7 +68,8 @@ class _progressState extends State<progress> {
                       height: 600, // Set the height of the grid
                       width: 600, // Set the width of the grid
                       child: GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3, // Number of columns
                           crossAxisSpacing: 60, // Space between columns
                           mainAxisSpacing: 30, // Space between rows
@@ -71,12 +77,14 @@ class _progressState extends State<progress> {
                         itemCount: 6, // Number of items in the grid (9 images)
                         itemBuilder: (context, index) {
                           // Replace 'assets/image_$index.png' with your actual asset path
-                          String assetName = 'assets/badges/i_${index + 1}.jpeg'; // Assuming your images are named image_1.png, image_2.png, etc.
+                          String assetName =
+                              'assets/badges/i_${index + 1}.jpeg'; // Assuming your images are named image_1.png, image_2.png, etc.
                           return Container(
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage(assetName),
-                                fit: BoxFit.contain, // Fill the box with the image
+                                fit: BoxFit
+                                    .contain, // Fill the box with the image
                               ),
                             ),
                           );

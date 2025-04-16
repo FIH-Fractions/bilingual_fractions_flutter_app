@@ -4,7 +4,7 @@ import 'flashcard/flashcard_mainview.dart';
 import 'games/games.dart';
 import 'home/home.dart';
 import 'profile/progress.dart';
-import 'quiz/quiz.dart';
+import 'quiz/quiz_selection_screen.dart'; // Updated import
 
 void main() => runApp(const BottomNavBarApp());
 
@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _widgetOptions = <Widget>[
     home(),
     flashcard(),
-    QuizPage(),
+    QuizSelectionScreen(), // Updated to use QuizSelectionScreen instead of QuizPage
     Games(),
   ];
 
