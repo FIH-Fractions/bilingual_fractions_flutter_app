@@ -1,21 +1,49 @@
 // quiz_page.dart
 import 'package:flutter/material.dart';
-import 'quiz_question.dart';
-import 'questions_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'quiz_question.dart';
+import 'quiz_categories.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({Key? key}) : super(key: key);
+  final QuizCategory category;
+
+  const QuizPage({Key? key, required this.category}) : super(key: key);
 
   @override
   _QuizPageState createState() => _QuizPageState();
 }
 
 class _QuizPageState extends State<QuizPage> {
+  late List<QuizQuestion> questions;
   int _currentIndex = 0;
   int _score = 0;
-  // To track if the question has been answered, and if so, which option was selected
   int? _selectedAnswerIndex;
+  bool _quizCompleted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Get questions for this category
+    questions = getQuestionsByCategory(widget.category);
+    _loadScore();
+  }
+
+  Future<void> _loadScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      String scoreKey =
+          '${widget.category.toString().split('.').last}_quiz_score';
+      _score = prefs.getInt(scoreKey) ?? 0;
+    });
+  }
+
+  Future<void> _saveScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    String scoreKey =
+        '${widget.category.toString().split('.').last}_quiz_score';
+    await prefs.setInt(scoreKey, _score);
+  }
 
   void showTemporaryPopup(String message) {
     showDialog(
@@ -50,6 +78,9 @@ class _QuizPageState extends State<QuizPage> {
       _selectedAnswerIndex = null; // Reset for the next question
       if (_currentIndex < questions.length - 1) {
         _currentIndex++;
+      } else {
+        _quizCompleted = true;
+        _saveScore();
       }
     });
   }
@@ -74,8 +105,7 @@ class _QuizPageState extends State<QuizPage> {
           showTemporaryPopup('Your Answer is Correct! +10 points');
         } else {
           _score -= 5;
-          showTemporaryPopup(
-              'Wrong Answer! -5 points'); // Or you can customize this message
+          showTemporaryPopup('Wrong Answer! -5 points');
         }
       });
     }
@@ -83,17 +113,39 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+    // If all questions are answered, show the completion screen
+    if (_quizCompleted) {
+      return _buildCompletionScreen();
+    }
+
     final currentQuestion = questions[_currentIndex];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz - Score: $_score'),
+        title:
+            Text('${getCategoryName(widget.category)} Quiz - Score: $_score'),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: <Widget>[
+              Text(
+                'Question ${_currentIndex + 1} of ${questions.length}',
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 10.0),
+              LinearProgressIndicator(
+                value: (_currentIndex + 1) / questions.length,
+                backgroundColor: Colors.grey[300],
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  _getProgressColor((_currentIndex + 1) / questions.length),
+                ),
+                minHeight: 10,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              SizedBox(height: 20.0),
               Text(
                 currentQuestion.question,
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
@@ -107,8 +159,10 @@ class _QuizPageState extends State<QuizPage> {
                 fit: BoxFit.contain,
               ),
               SizedBox(height: 15.0), // Space above the answer row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 10.0,
+                runSpacing: 10.0,
                 children: currentQuestion.answers.asMap().entries.map((entry) {
                   int idx = entry.key;
                   String answer = entry.value;
@@ -130,27 +184,27 @@ class _QuizPageState extends State<QuizPage> {
                     }
                   }
 
-                  return Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: idx == 0 ? 0 : 8,
-                          right: idx == currentQuestion.answers.length - 1
-                              ? 0
-                              : 8),
-                      child: ElevatedButton(
-                        onPressed: () => _selectAnswer(idx),
-                        child: Text(answer,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black)),
-                        style: ElevatedButton.styleFrom(
-                          primary: backgroundColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                  return Container(
+                    width: MediaQuery.of(context).size.width / 2 - 25,
+                    margin: EdgeInsets.symmetric(vertical: 5.0),
+                    child: ElevatedButton(
+                      onPressed: () => _selectAnswer(idx),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          answer,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
-                          minimumSize:
-                              Size(90, 80), // Minimum size of the button
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: backgroundColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                     ),
@@ -166,9 +220,8 @@ class _QuizPageState extends State<QuizPage> {
                       onPressed: _showPreviousQuestion,
                       child: Text('Back'),
                       style: ElevatedButton.styleFrom(
-                        primary:
-                            Color(0xFFF4F4DC), // Set the button color as needed
-                        onPrimary: Colors.black, // Set the text color as needed
+                        primary: Color(0xFFF4F4DC),
+                        onPrimary: Colors.black,
                       ),
                     ),
                   ElevatedButton(
@@ -177,28 +230,24 @@ class _QuizPageState extends State<QuizPage> {
                             final url = currentQuestion.youtubeLink!;
                             if (await canLaunch(url)) {
                               await launch(url);
-                            } else {
-                              // Handle the error or show a message if the URL can't be launched
                             }
                           }
-                        : null, // Disables the button if there's no YouTube link
+                        : null,
                     child: Text('Watch Tutorial'),
                     style: ElevatedButton.styleFrom(
-                      primary:
-                          Color(0xFFF4F4DC), // Set the button color as needed
-                      onPrimary: Colors.black, // Set the text color as needed
+                      primary: Color(0xFFF4F4DC),
+                      onPrimary: Colors.black,
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: _selectedAnswerIndex != null &&
-                            _currentIndex < questions.length - 1
-                        ? _showNextQuestion
-                        : null, // Disable the button if no answer is selected or if it's the last question
-                    child: Text('Next'),
+                    onPressed:
+                        _selectedAnswerIndex != null ? _showNextQuestion : null,
+                    child: Text(_currentIndex < questions.length - 1
+                        ? 'Next'
+                        : 'Finish'),
                     style: ElevatedButton.styleFrom(
-                      primary:
-                          Color(0xFFF4F4DC), // Set the button color as needed
-                      onPrimary: Colors.black, // Set the text color as needed
+                      primary: Color(0xFFF4F4DC),
+                      onPrimary: Colors.black,
                     ),
                   ),
                 ],
@@ -208,5 +257,112 @@ class _QuizPageState extends State<QuizPage> {
         ),
       ),
     );
+  }
+
+  Widget _buildCompletionScreen() {
+    double percentageCorrect = _score / (questions.length * 10) * 100;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Quiz Completed'),
+        automaticallyImplyLeading: false,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                percentageCorrect >= 70 ? Icons.emoji_events : Icons.stars,
+                size: 80,
+                color: _getProgressColor(percentageCorrect / 100),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Quiz Completed!',
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Your Score: $_score points',
+                style: TextStyle(fontSize: 22),
+              ),
+              SizedBox(height: 10),
+              Text(
+                '${percentageCorrect.toStringAsFixed(0)}% Correct',
+                style: TextStyle(
+                    fontSize: 22,
+                    color: _getProgressColor(percentageCorrect / 100)),
+              ),
+              SizedBox(height: 30),
+              Text(
+                _getFeedbackMessage(percentageCorrect),
+                style: TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Reset the quiz to try again
+                      setState(() {
+                        _currentIndex = 0;
+                        _selectedAnswerIndex = null;
+                        _quizCompleted = false;
+                      });
+                    },
+                    child: Text('Try Again'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                      onPrimary: Colors.white,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Return to quiz selection with updated score
+                      Navigator.pop(context, _score);
+                    },
+                    child: Text('Back to Quizzes'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      onPrimary: Colors.white,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _getFeedbackMessage(double percentage) {
+    if (percentage >= 90) {
+      return 'Excellent! You have mastered these fractions!';
+    } else if (percentage >= 70) {
+      return 'Good job! You have a solid understanding of fractions!';
+    } else if (percentage >= 50) {
+      return 'Not bad! With a little more practice, you\'ll master fractions!';
+    } else {
+      return 'Keep practicing! Fractions can be tricky, but you\'ll get there!';
+    }
+  }
+
+  Color _getProgressColor(double value) {
+    if (value < 0.3) {
+      return Colors.red;
+    } else if (value < 0.7) {
+      return Colors.orange;
+    } else {
+      return Colors.green;
+    }
   }
 }
