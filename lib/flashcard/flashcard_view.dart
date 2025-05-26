@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FlashcardView extends StatelessWidget {
 
@@ -45,6 +46,13 @@ class FlashcardView extends StatelessWidget {
                     var text = isEnglish ? textEn : textEs;
                     await flutterTts.setLanguage(isEnglish ? "en-US" : "es-ES");
                     await flutterTts.speak(text);
+
+                    await FirebaseFirestore.instance
+                        .collection('analytics')
+                        .doc('audio_button_click')
+                        .set({
+                      'count': FieldValue.increment(1),
+                    }, SetOptions(merge: true));
                   },
                 ),
                 IconButton(

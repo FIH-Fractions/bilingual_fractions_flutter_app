@@ -35,7 +35,10 @@ dependencies:
   flip_card: ^0.7.0
   flutter_tts: ^3.8.5
   shared_preferences: ^2.2.2
-
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.15.0
+  cloud_firestore: ^4.15.0
+  flutter_dotenv: ^5.1.0
 
 
   # The following adds the Cupertino Icons font to your application.

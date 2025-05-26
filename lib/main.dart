@@ -5,8 +5,32 @@ import 'games/games.dart';
 import 'home/home.dart';
 import 'profile/progress.dart';
 import 'quiz/quiz_selection_screen.dart'; // Updated import
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
-void main() => runApp(const BottomNavBarApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(); // Load environment variables
+
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: dotenv.env['API_KEY']!,
+        authDomain: dotenv.env['AUTH_DOMAIN']!,
+        projectId: dotenv.env['PROJECT_ID']!,
+        storageBucket: dotenv.env['STORAGE_BUCKET']!,
+        messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
+        appId: dotenv.env['APP_ID']!,
+        measurementId: dotenv.env['MEASUREMENT_ID'],
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
+
+  runApp(const BottomNavBarApp());
+}
 
 class BottomNavBarApp extends StatelessWidget {
   const BottomNavBarApp({super.key});
