@@ -2,7 +2,6 @@ import 'package:bilingual_fractions_flutter_app/games/fruits_basket_game.dart';
 import 'package:flutter/material.dart';
 
 class EatingFruitsGame extends StatefulWidget {
-
   @override
   _EatingFruitsGameState createState() => _EatingFruitsGameState();
 }
@@ -34,7 +33,6 @@ final List<GameSet> gameset = [
     totalCount: 5,
     imageSize: 300,
   ),
-
   GameSet(
     question: "Eat Half of the Bananas",
     originalImagePath: 'assets/games/banana.png',
@@ -43,7 +41,6 @@ final List<GameSet> gameset = [
     totalCount: 8,
     imageSize: 200,
   ),
-
   GameSet(
     question: "Eat One Third of the Grapes Bunch",
     originalImagePath: 'assets/games/grapes.png',
@@ -72,6 +69,7 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
     clickedStatus = List<bool>.filled(gameset[_currentIndex].totalCount, false);
     gameOver = false;
   }
+
   void showTemporaryPopup(String message) {
     showDialog(
       context: context,
@@ -81,7 +79,7 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
         });
         return AlertDialog(
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           content: Container(
             height: 100,
             child: Column(
@@ -113,7 +111,7 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
 
   void showNextSet() {
     setState(() {
-      gameOver=false;
+      gameOver = false;
       if (_currentIndex < gameset.length - 1) {
         _currentIndex++;
       }
@@ -134,18 +132,19 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
 
     return Scaffold(
       appBar: AppBar(
-        actions:[ Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: IconButton(
-            icon: const Icon(
-              Icons.info,
-              size: 35,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: IconButton(
+              icon: const Icon(
+                Icons.info,
+                size: 35,
+              ),
+              onPressed: () {
+                showTemporaryPopup("Click on the fruits to eat them!");
+              },
             ),
-            onPressed: () {
-              showTemporaryPopup("Click on the fruits to eat them!");
-            },
           ),
-        ),
         ],
       ),
       body: Column(
@@ -160,23 +159,23 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
               style: const TextStyle(fontSize: 34),
             ),
           ),
-          Text.rich(TextSpan(
-              children: [
-                const TextSpan(text: "Score: ", style: TextStyle(fontSize: 25)),
-                TextSpan(text: "$score", style: const TextStyle(
+          Text.rich(TextSpan(children: [
+            const TextSpan(text: "Score: ", style: TextStyle(fontSize: 25)),
+            TextSpan(
+                text: "$score",
+                style: const TextStyle(
                   color: Colors.green,
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                 ))
-              ]
-            )
-          ),
+          ])),
           if (!gameOver)
             Expanded(
               child: Center(
                 child: Wrap(
                   alignment: WrapAlignment.center,
-                  children: List<Widget>.generate(clickedStatus.length, (index) {
+                  children:
+                      List<Widget>.generate(clickedStatus.length, (index) {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
@@ -187,7 +186,9 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                         width: currentSet.imageSize,
                         height: currentSet.imageSize,
                         child: Image.asset(
-                          clickedStatus[index] ? currentSet.replacementImagePath : currentSet.originalImagePath,
+                          clickedStatus[index]
+                              ? currentSet.replacementImagePath
+                              : currentSet.originalImagePath,
                           key: UniqueKey(),
                         ),
                       ),
@@ -197,7 +198,8 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
               ),
             ),
           if (gameOver)
-            Text("\nEaten Fruits: $replacedCount\nFraction of Eaten Fruits to Total Fruits: $replacedCount/${currentSet.totalCount}\n\n${replacedCount == currentSet.expectedCount ? "Yayyyy! You've won" : "Oops! You didn't match the fraction"}",
+            Text(
+              "\nEaten Fruits: $replacedCount\nFraction of Eaten Fruits to Total Fruits: $replacedCount/${currentSet.totalCount}\n\n${replacedCount == currentSet.expectedCount ? "Yayyyy! You've won" : "Oops! You didn't match the fraction"}",
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.black,
@@ -216,7 +218,8 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                       initGame();
                     });
                   } else {
-                    Navigator.pop(context); // If at the first index, pop the current context
+                    Navigator.pop(
+                        context); // If at the first index, pop the current context
                   }
                 },
               ),
@@ -232,8 +235,8 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                 ElevatedButton(
                   onPressed: onSubmit,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    onPrimary: Colors.black,
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.black,
                     minimumSize: const Size(95, 40),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     shape: const RoundedRectangleBorder(
@@ -250,15 +253,15 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                     setState(() {
                       initGame();
                     });
-                  }
-                  else {
-                };
+                  } else {}
+                  ;
                 },
               ),
-
             ],
           ),
-          const SizedBox(height: 25,),
+          const SizedBox(
+            height: 25,
+          ),
         ],
       ),
     );

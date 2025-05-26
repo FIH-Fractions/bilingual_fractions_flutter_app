@@ -202,7 +202,7 @@ class _QuizPageState extends State<QuizPage> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: backgroundColor,
+                        backgroundColor: backgroundColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -220,8 +220,8 @@ class _QuizPageState extends State<QuizPage> {
                       onPressed: _showPreviousQuestion,
                       child: Text('Back'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFFF4F4DC),
-                        onPrimary: Colors.black,
+                        backgroundColor: Color(0xFFF4F4DC),
+                        foregroundColor: Colors.black,
                       ),
                     ),
                   ElevatedButton(
@@ -235,8 +235,8 @@ class _QuizPageState extends State<QuizPage> {
                         : null,
                     child: Text('Watch Tutorial'),
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFF4F4DC),
-                      onPrimary: Colors.black,
+                      backgroundColor: Color(0xFFF4F4DC),
+                      foregroundColor: Colors.black,
                     ),
                   ),
                   ElevatedButton(
@@ -246,8 +246,8 @@ class _QuizPageState extends State<QuizPage> {
                         ? 'Next'
                         : 'Finish'),
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFF4F4DC),
-                      onPrimary: Colors.black,
+                      backgroundColor: Color(0xFFF4F4DC),
+                      foregroundColor: Colors.black,
                     ),
                   ),
                 ],
@@ -316,8 +316,8 @@ class _QuizPageState extends State<QuizPage> {
                     },
                     child: Text('Try Again'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      onPrimary: Colors.white,
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     ),
@@ -329,8 +329,8 @@ class _QuizPageState extends State<QuizPage> {
                     },
                     child: Text('Back to Quizzes'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                      onPrimary: Colors.white,
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     ),
