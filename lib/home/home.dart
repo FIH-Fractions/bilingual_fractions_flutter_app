@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bilingual_fractions_flutter_app/learn/intro.dart';
+import 'package:bilingual_fractions_flutter_app/learn/learn_slides.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -33,7 +33,7 @@ class _home extends State<home> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => IntroPage()),
+                  MaterialPageRoute(builder: (context) => LearnPage()),
                 );
               },
               child: Container(
