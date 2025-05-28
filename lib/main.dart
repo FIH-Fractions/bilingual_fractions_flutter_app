@@ -6,6 +6,7 @@ import 'home/home.dart';
 import 'profile/progress.dart';
 import 'quiz/quiz_selection_screen.dart'; // Updated import
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -27,6 +28,18 @@ Future<void> main() async {
     );
   } else {
     await Firebase.initializeApp();
+  }
+
+  // Record app session start in analytics
+  try {
+    await FirebaseFirestore.instance
+        .collection('analytics')
+        .doc('session_start')
+        .set({
+      'count': FieldValue.increment(1),
+    }, SetOptions(merge: true));
+  } catch (e) {
+    print('Error recording session start: $e');
   }
 
   runApp(const BottomNavBarApp());
