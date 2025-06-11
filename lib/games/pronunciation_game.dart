@@ -325,7 +325,7 @@ class _PronunciationGameState extends State<PronunciationGame> {
 
   // Fallback to built-in speech recognition
   Future<void> _startBuiltInRecording() async {
-    String localeId = _isEnglishMode ? 'en_US' : 'es_ES';
+    String localeId = _isEnglishMode ? 'en_IN' : 'es_ES';
     await _speech.listen(
       onResult: (result) {
         setState(() {
@@ -336,8 +336,8 @@ class _PronunciationGameState extends State<PronunciationGame> {
         });
       },
       localeId: localeId,
-      listenFor: Duration(seconds: 5),
-      pauseFor: Duration(seconds: 2),
+      listenFor: Duration(seconds: 8),
+      pauseFor: Duration(seconds: 3),
       partialResults: true,
     );
   }
