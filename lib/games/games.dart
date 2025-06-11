@@ -18,7 +18,7 @@ class Games extends StatelessWidget {
           child: Column(
             // Use Column for vertical layout
             children: <Widget>[
-              // Matching Game Tile
+              // Write Fractions Game
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -28,11 +28,9 @@ class Games extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width -
-                      32, // Adjust width to fit the screen
-                  height: 150, // Fixed height for uniformity
-                  margin: const EdgeInsets.only(
-                      bottom: 10), // Add margin to separate tiles
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 150,
+                  margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 162, 209, 194),
                     borderRadius: BorderRadius.circular(8),
@@ -48,6 +46,35 @@ class Games extends StatelessWidget {
                   ),
                 ),
               ),
+              // Speak Fractions Game
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PronunciationGame()),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 150,
+                  margin: const EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF7ABDA9),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Speak Fractions',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Matching Game
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -57,13 +84,11 @@ class Games extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width -
-                      32, // Adjust width to fit the screen
-                  height: 150, // Fixed height for uniformity
-                  margin: const EdgeInsets.only(
-                      bottom: 10), // Add margin to separate tiles
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 150,
+                  margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
-                    color: Color(0xFF7ABDA9),
+                    color: Color(0xFF649889),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
@@ -77,7 +102,7 @@ class Games extends StatelessWidget {
                   ),
                 ),
               ),
-              // Eating Fruits Game Tile
+              // Eating Fruits Game
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -86,13 +111,11 @@ class Games extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width -
-                      32, // Adjust width to fit the screen
-                  height: 150, // Fixed height for uniformity
-                  margin: const EdgeInsets.only(
-                      bottom: 10), // Add margin to separate tiles
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 150,
+                  margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
-                    color: Color(0xFF649889),
+                    color: Color(0xFF476E62),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
@@ -119,40 +142,12 @@ class Games extends StatelessWidget {
                   height: 150,
                   margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
-                    color: Color(0xFF476E62),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Fruits Basket Game',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 35,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              // Pronunciation Game
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PronunciationGame()),
-                  );
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 32,
-                  height: 150,
-                  margin: const EdgeInsets.only(bottom: 10),
-                  decoration: BoxDecoration(
                     color: Color(0xFF2E4F47),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
                     child: Text(
-                      'Pronunciation Practice',
+                      'Fruits Basket Game',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 35,

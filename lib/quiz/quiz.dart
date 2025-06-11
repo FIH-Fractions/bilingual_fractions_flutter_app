@@ -20,6 +20,7 @@ class _QuizPageState extends State<QuizPage> {
   int _score = 0;
   int? _selectedAnswerIndex;
   bool _quizCompleted = false;
+  int _correctAnswers = 0; // Track correct answers
 
   @override
   void initState() {
@@ -102,6 +103,7 @@ class _QuizPageState extends State<QuizPage> {
         bool isCorrect = index == questions[_currentIndex].correctAnswerIndex;
         if (isCorrect) {
           _score += 10;
+          _correctAnswers += 1; // Increment correct answers
           showTemporaryPopup('Your Answer is Correct! +10 points');
         } else {
           _score -= 5;
@@ -162,11 +164,19 @@ class _QuizPageState extends State<QuizPage> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 15.0),
-                  Image.asset(
-                    currentQuestion.imagePath,
-                    width: 500,
-                    height: 340,
-                    fit: BoxFit.contain,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: currentQuestion.imagePaths.map((imagePath) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Image.asset(
+                          imagePath,
+                          width: 240,
+                          height: 340,
+                          fit: BoxFit.contain,
+                        ),
+                      );
+                    }).toList(),
                   ),
                   SizedBox(height: 15.0), // Space above the answer row
                   Wrap(
@@ -275,7 +285,8 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _buildCompletionScreen() {
-    double percentageCorrect = _score / (questions.length * 10) * 100;
+    double percentageCorrect =
+        questions.isEmpty ? 0 : (_correctAnswers / questions.length) * 100;
 
     return Scaffold(
       appBar: AppBar(
@@ -327,6 +338,8 @@ class _QuizPageState extends State<QuizPage> {
                         _currentIndex = 0;
                         _selectedAnswerIndex = null;
                         _quizCompleted = false;
+                        _score = 0; // Reset score
+                        _correctAnswers = 0; // Reset correct answers
                       });
                     },
                     child: Text('Try Again'),
@@ -350,6 +363,28 @@ class _QuizPageState extends State<QuizPage> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     ),
                   ),
+                  if (_getNextCategory(widget.category) != null)
+                    ElevatedButton(
+                      onPressed: () {
+                        final nextCategory = _getNextCategory(widget.category);
+                        if (nextCategory != null) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  QuizPage(category: nextCategory),
+                            ),
+                          );
+                        }
+                      },
+                      child: Text('Move to Next Level'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        foregroundColor: Colors.white,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                    ),
                 ],
               ),
             ],
@@ -379,5 +414,14 @@ class _QuizPageState extends State<QuizPage> {
     } else {
       return Colors.green;
     }
+  }
+
+  QuizCategory? _getNextCategory(QuizCategory current) {
+    final values = QuizCategory.values;
+    final idx = values.indexOf(current);
+    if (idx >= 0 && idx < values.length - 1) {
+      return values[idx + 1];
+    }
+    return null;
   }
 }
