@@ -65,11 +65,13 @@ final List<FractionData> fractionSet = [
 ];
 
 final List<Color> boxColors = [
-  Color(0xFF7ABDA9),
+  Color(0xFF4ED7F1),
   Color(0xFFC68EFD),
   Color(0xFFE9A5F1),
   Color(0xFFFED2E2),
   Color(0xFFF16767),
+  Color(0xFFFFD66B),
+  Color(0xFF67AE6E),
 ];
 
 final Color randomBoxColor = boxColors[Random().nextInt(boxColors.length)];
@@ -90,6 +92,8 @@ class _PronunciationGameState extends State<PronunciationGame> {
   bool _hasAnswered = false;
   bool _isCorrect = false;
   String _feedback = '';
+  bool _replayEnabled = false; // Control replay button state
+  Color _currentBoxColor = boxColors[Random().nextInt(boxColors.length)];
 
   // Chat functionality
   TextEditingController _chatController = TextEditingController();
@@ -521,6 +525,7 @@ class _PronunciationGameState extends State<PronunciationGame> {
         _isCorrect = false;
         _isListening = false;
         _isRecording = false;
+        _pickNewBoxColor();
       });
       _initTts(); // Reinitialize TTS with current language
     }
@@ -546,6 +551,7 @@ class _PronunciationGameState extends State<PronunciationGame> {
         _isCorrect = false;
         _isListening = false;
         _isRecording = false;
+        _pickNewBoxColor();
       });
       _initTts(); // Reinitialize TTS with current language
     }
@@ -685,6 +691,14 @@ Instructions: Look at the fraction and say it out loud in the requested language
     );
   }
 
+  void _pickNewBoxColor() {
+    Color newColor;
+    do {
+      newColor = boxColors[Random().nextInt(boxColors.length)];
+    } while (newColor == _currentBoxColor && boxColors.length > 1);
+    _currentBoxColor = newColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentFraction = fractionSet[_currentIndex];
@@ -725,7 +739,7 @@ Instructions: Look at the fraction and say it out loud in the requested language
           Container(
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              color: randomBoxColor,
+              color: _currentBoxColor,
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
