@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bilingual_fractions_flutter_app/learn/learn_slides.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class home extends StatefulWidget {

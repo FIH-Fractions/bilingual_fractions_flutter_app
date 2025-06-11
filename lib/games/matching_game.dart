@@ -168,10 +168,9 @@ Instructions: Drag the fraction names from the left to match with their visual r
     }
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Match The Fractions',
-            style: TextStyle(fontSize: 34),
-          ),
+          title: Text('Match The Fractions',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+          centerTitle: true,
           actions: [
             Padding(
               padding: EdgeInsets.only(left: 10),
@@ -219,23 +218,30 @@ Instructions: Drag the fraction names from the left to match with their visual r
                             child: Draggable<ItemModel>(
                               data: item,
                               childWhenDragging: Container(
-                                color: Colors.grey[200],
                                 width: 160,
                                 height: 80,
                                 alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
                                 child: Text(
                                   item.name,
                                   style: const TextStyle(
                                       color: Colors.grey, fontSize: 25),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                               feedback: Material(
                                 color: Colors.transparent,
                                 child: Container(
-                                  color: Colors.blue,
                                   width: 160,
                                   height: 80,
                                   alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF4261af),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
                                   child: Text(
                                     item.name,
                                     style: const TextStyle(
@@ -244,10 +250,13 @@ Instructions: Drag the fraction names from the left to match with their visual r
                                 ),
                               ),
                               child: Container(
-                                color: Colors.blue,
                                 width: 160,
                                 height: 80,
                                 alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF4261af),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
                                 child: Text(
                                   item.name,
                                   style: const TextStyle(
@@ -299,39 +308,61 @@ Instructions: Drag the fraction names from the left to match with their visual r
               const Text(
                 "Well Played!",
                 style: TextStyle(
-                  color: Colors.purple,
+                  color: const Color(0xFF8F87F1),
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,
                 ),
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back_rounded,
-                      size: 35,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    onPressed: null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8F87F1),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
-                    onPressed: (null)),
-                IconButton(
-                  icon: const Icon(
-                    Icons.replay,
-                    size: 35,
+                    child: const Text('Previous'),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      initGame();
-                    });
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_forward_rounded,
-                    size: 35,
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        initGame();
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8F87F1),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text('Replay'),
                   ),
-                  onPressed: () {},
-                ),
-              ],
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8F87F1),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text('Next'),
+                  ),
+                ],
+              ),
             ),
           ],
         )));

@@ -98,7 +98,11 @@ class _FractionWritingGameState extends State<FractionWritingGame> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Write Fractions")),
+      appBar: AppBar(
+        title: Text("Write Fractions",
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -120,7 +124,7 @@ class _FractionWritingGameState extends State<FractionWritingGame> {
                       Text(
                         'Tap the ${currentExample.fruitName} to eat a fraction of it!',
                         style: const TextStyle(
-                            fontSize: 16, fontStyle: FontStyle.italic),
+                            fontSize: 20, fontStyle: FontStyle.italic),
                       ),
                   ],
                 ),
@@ -129,7 +133,8 @@ class _FractionWritingGameState extends State<FractionWritingGame> {
               if (showQuestion) ...[
                 Text(
                   'If you eat part of the ${currentExample.fruitName}, only ${currentExample.remainingFractionText} is left...',
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
@@ -164,6 +169,10 @@ class _FractionWritingGameState extends State<FractionWritingGame> {
                         controller: numCtrl,
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
                         decoration:
                             const InputDecoration(border: InputBorder.none),
                       ),
@@ -172,6 +181,10 @@ class _FractionWritingGameState extends State<FractionWritingGame> {
                         controller: denCtrl,
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
                         decoration:
                             const InputDecoration(border: InputBorder.none),
                       ),
@@ -179,26 +192,41 @@ class _FractionWritingGameState extends State<FractionWritingGame> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: checkAnswer,
-                  child: const Text('Submit'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: checkAnswer,
+                      child: const Text('Submit'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF8F87F1),
+                        foregroundColor: Colors.white,
+                      ),
+                    ),
+                    if (feedback == 'Correct!' &&
+                        currentIndex < examples.length - 1) ...[
+                      const SizedBox(width: 16),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            currentIndex++;
+                            currentExample = examples[currentIndex];
+                            feedback = '';
+                            numCtrl.clear();
+                            denCtrl.clear();
+                            showHalf = false;
+                            showQuestion = false;
+                          });
+                        },
+                        child: const Text('Next'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF8F87F1),
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ]
+                  ],
                 ),
-                if (feedback == 'Correct!' &&
-                    currentIndex < examples.length - 1)
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentIndex++;
-                        currentExample = examples[currentIndex];
-                        feedback = '';
-                        numCtrl.clear();
-                        denCtrl.clear();
-                        showHalf = false;
-                        showQuestion = false;
-                      });
-                    },
-                    child: const Text('Next'),
-                  )
               ],
             ],
           ),

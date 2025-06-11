@@ -1,11 +1,9 @@
-import 'package:bilingual_fractions_flutter_app/games/fruits_basket_game.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'flashcard/flashcard_mainview.dart';
 import 'games/games.dart';
 import 'home/home.dart';
 import 'learn/learn_slides.dart';
-import 'profile/progress.dart';
 import 'quiz/quiz_selection_screen.dart'; // Updated import
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

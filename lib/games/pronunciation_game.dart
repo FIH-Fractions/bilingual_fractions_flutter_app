@@ -64,6 +64,16 @@ final List<FractionData> fractionSet = [
   ),
 ];
 
+final List<Color> boxColors = [
+  Color(0xFF7ABDA9),
+  Color(0xFFC68EFD),
+  Color(0xFFE9A5F1),
+  Color(0xFFFED2E2),
+  Color(0xFFF16767),
+];
+
+final Color randomBoxColor = boxColors[Random().nextInt(boxColors.length)];
+
 class _PronunciationGameState extends State<PronunciationGame> {
   // Speech recognition and TTS
   late stt.SpeechToText _speech;
@@ -76,7 +86,6 @@ class _PronunciationGameState extends State<PronunciationGame> {
 
   // Game state
   int _currentIndex = 0;
-  int score = 0;
   bool _isEnglishMode = true; // Alternates between English and Spanish
   bool _hasAnswered = false;
   bool _isCorrect = false;
@@ -92,7 +101,10 @@ class _PronunciationGameState extends State<PronunciationGame> {
     _audioRecorder = AudioRecorder();
     _initSpeech();
     _initTts();
-    _randomizeLanguage();
+    // Start with English mode by default
+    setState(() {
+      _isEnglishMode = true;
+    });
     _checkWhisperAvailability();
   }
 
@@ -128,11 +140,41 @@ class _PronunciationGameState extends State<PronunciationGame> {
   // Randomly choose English or Spanish mode
   void _randomizeLanguage() {
     setState(() {
-      _isEnglishMode = Random().nextBool();
+      // Don't randomly switch languages - let user choose
+      // _isEnglishMode = Random().nextBool();
       _hasAnswered = false;
       _feedback = '';
     });
-    _initTts(); // Reinitialize TTS with new language
+    _initTts(); // Reinitialize TTS with current language
+  }
+
+  // Helper method to reset all game state
+  void _resetGameState() {
+    setState(() {
+      _hasAnswered = false;
+      _feedback = '';
+      _recognizedWords = '';
+      _isCorrect = false;
+      _isListening = false;
+    });
+    // Stop any ongoing speech recognition
+    if (_speech.isListening) {
+      _speech.stop();
+    }
+    // Stop any ongoing recording
+    if (_isRecording) {
+      _audioRecorder.stop();
+      _isRecording = false;
+    }
+  }
+
+  // Add method to manually switch language
+  void _toggleLanguage() {
+    setState(() {
+      _isEnglishMode = !_isEnglishMode;
+    });
+    _resetGameState();
+    _initTts();
   }
 
   // Start listening for speech input
@@ -244,14 +286,14 @@ class _PronunciationGameState extends State<PronunciationGame> {
 
             setState(() {
               _recognizedWords = transcription.toLowerCase();
+              // After updating recognized words, check the answer
+              _checkAnswer();
             });
 
             // Clean up audio file
             if (await audioFile.exists()) {
               await audioFile.delete();
             }
-
-            _checkAnswer();
           } catch (e) {
             print('Error transcribing with Whisper: $e');
             setState(() {
@@ -288,12 +330,15 @@ class _PronunciationGameState extends State<PronunciationGame> {
       onResult: (result) {
         setState(() {
           _recognizedWords = result.recognizedWords.toLowerCase();
+          if (result.finalResult) {
+            _checkAnswer();
+          }
         });
       },
       localeId: localeId,
-      listenFor: Duration(seconds: 5), // Give more time to speak
-      pauseFor: Duration(seconds: 2), // Wait longer before stopping
-      partialResults: true, // Show partial results while speaking
+      listenFor: Duration(seconds: 5),
+      pauseFor: Duration(seconds: 2),
+      partialResults: true,
     );
   }
 
@@ -321,16 +366,26 @@ class _PronunciationGameState extends State<PronunciationGame> {
       _isCorrect = isCorrect;
       _hasAnswered = true;
       if (isCorrect) {
-        score += 10;
-        _feedback = 'Well done!';
+        _feedback = 'Perfect! Well done!';
       } else {
-        score -= 5;
         _feedback = 'Try again! Correct answer: $expectedAnswer';
       }
     });
 
     // Speak feedback
     _speakFeedback();
+
+    if (!isCorrect) {
+      Future.delayed(const Duration(seconds: 5), () {
+        if (mounted) {
+          setState(() {
+            _hasAnswered = false;
+            _feedback = '';
+            _recognizedWords = '';
+          });
+        }
+      });
+    }
   }
 
   // Enhanced answer checking with flexible matching
@@ -339,173 +394,98 @@ class _PronunciationGameState extends State<PronunciationGame> {
 
     print('Debug - Raw comparison: "$recognized" vs "$expected"');
 
-    // Remove any invisible/non-printing characters and normalize spaces
-    String basicRecognized = recognized
-        .replaceAll(RegExp(r'[^\x20-\x7E\u00A1-\uFFFF]'), '')
-        .replaceAll(RegExp(r'\s+'), ' ')
-        .trim()
-        .toLowerCase();
-    String basicExpected = expected
-        .replaceAll(RegExp(r'[^\x20-\x7E\u00A1-\uFFFF]'), '')
-        .replaceAll(RegExp(r'\s+'), ' ')
-        .trim()
-        .toLowerCase();
-
-    print(
-        'Debug - After invisible char removal: "$basicRecognized" vs "$basicExpected"');
-
-    // First try direct comparison (case insensitive)
-    if (basicRecognized == basicExpected) {
-      print('Debug - Direct match found after cleaning');
-      return true;
-    }
-
     // Clean and normalize both strings
-    String cleanRecognized = _cleanText(recognized);
-    String cleanExpected = _cleanText(expected);
+    String cleanRecognized = _cleanAndNormalize(recognized);
+    String cleanExpected = _cleanAndNormalize(expected);
 
     print('Debug - After cleaning: "$cleanRecognized" vs "$cleanExpected"');
 
+    // Special case: if user says just "1" or "one" for fractions like "1/2"
+    if ((recognized == "1" || cleanRecognized == "one") &&
+        cleanExpected.startsWith("one ")) {
+      print('Debug - Special case: User said just the numerator');
+      return true; // Accept saying just the numerator for simple fractions
+    }
+
     // Exact match after cleaning
     if (cleanRecognized == cleanExpected) {
-      print('Debug - Clean match found');
+      print('Debug - Exact match found');
       return true;
     }
 
-    // Check if expected answer is contained in recognized text
-    if (cleanRecognized.contains(cleanExpected)) {
+    // Check if recognized text contains expected text or vice versa
+    if (cleanRecognized.contains(cleanExpected) ||
+        cleanExpected.contains(cleanRecognized)) {
       print('Debug - Contains match found');
       return true;
     }
 
-    // Handle common number-to-word variations
-    String normalizedRecognized = _normalizeNumbers(cleanRecognized);
-    String normalizedExpected = _normalizeNumbers(cleanExpected);
+    // Check word-by-word similarity for partial matches
+    List<String> recognizedWords =
+        cleanRecognized.split(' ').where((w) => w.isNotEmpty).toList();
+    List<String> expectedWords =
+        cleanExpected.split(' ').where((w) => w.isNotEmpty).toList();
 
-    print(
-        'Debug - After normalization: "$normalizedRecognized" vs "$normalizedExpected"');
+    print('Debug - Word comparison: $recognizedWords vs $expectedWords');
 
-    if (normalizedRecognized == normalizedExpected) {
-      print('Debug - Normalized match found');
-      return true;
+    // If both are single words, check for close matches
+    if (recognizedWords.length == 1 && expectedWords.length == 1) {
+      return recognizedWords[0] == expectedWords[0];
     }
 
-    if (normalizedRecognized.contains(normalizedExpected)) {
-      print('Debug - Normalized contains match found');
-      return true;
+    // For multi-word phrases, check if recognized words match the start of expected
+    if (recognizedWords.length <= expectedWords.length) {
+      bool allMatch = true;
+      for (int i = 0; i < recognizedWords.length; i++) {
+        if (recognizedWords[i] != expectedWords[i]) {
+          allMatch = false;
+          break;
+        }
+      }
+      if (allMatch) {
+        double completeness = recognizedWords.length / expectedWords.length;
+        print(
+            'Debug - Partial match: ${(completeness * 100).toStringAsFixed(1)}% complete');
+        return completeness >= 0.6; // Require at least 60% for acceptance
+      }
     }
 
-    // Check similarity for minor differences (allow some flexibility)
-    bool similarMatch = _isSimilar(normalizedRecognized, normalizedExpected);
-    print('Debug - Similarity match: $similarMatch');
-
-    return similarMatch;
+    print('Debug - No match found');
+    return false;
   }
 
-  // Clean text by removing punctuation, extra spaces, and converting to lowercase
-  String _cleanText(String text) {
-    return text
-        .toLowerCase()
+  // Clean and normalize text in one step
+  String _cleanAndNormalize(String text) {
+    String cleaned = text.toLowerCase().trim();
+
+    // Apply fraction-specific normalizations FIRST (before removing punctuation)
+    cleaned = cleaned
+        // Handle numerical fraction inputs first (before punctuation removal)
+        .replaceAll(RegExp(r'\b1/2\b'), 'one half')
+        .replaceAll(RegExp(r'\b1/4\b'), 'one fourth')
+        .replaceAll(RegExp(r'\b3/4\b'), 'three fourths')
+        .replaceAll(RegExp(r'\b2/3\b'), 'two thirds')
+        .replaceAll(RegExp(r'\b5/8\b'), 'five eighths');
+
+    // Now remove punctuation and normalize whitespace
+    cleaned = cleaned
         .replaceAll(RegExp(r'[^\w\s]'), '') // Remove punctuation
-        .replaceAll(RegExp(r'\s+'), ' ') // Normalize whitespace
-        .trim();
-  }
+        .replaceAll(RegExp(r'\s+'), ' '); // Normalize whitespace
 
-  // Convert common number variations to words
-  String _normalizeNumbers(String text) {
-    return text
-        .replaceAll('1', 'one')
-        .replaceAll('2', 'two')
-        .replaceAll('3', 'three')
-        .replaceAll('4', 'four')
-        .replaceAll('5', 'five')
-        .replaceAll('6', 'six')
-        .replaceAll('7', 'seven')
-        .replaceAll('8', 'eight')
-        .replaceAll('9', 'nine')
-        .replaceAll('1st', 'first')
-        .replaceAll('2nd', 'second')
-        .replaceAll('3rd', 'third')
-        .replaceAll('4th', 'fourth')
-        .replaceAll('5th', 'fifth')
-        .replaceAll('6th', 'sixth')
-        .replaceAll('7th', 'seventh')
-        .replaceAll('8th', 'eighth')
-        .replaceAll('9th', 'ninth')
-        .replaceAll('-', ' ') // Handle hyphenated fractions
-        .replaceAll(RegExp(r'\s+'), ' ')
-        .trim();
-  }
+    // Handle remaining normalizations
+    cleaned = cleaned
+        // Handle single digit to word (only if not already part of a fraction phrase)
+        .replaceAll(RegExp(r'\b1\b(?!\s+half)(?!\s+fourth)'), 'one')
+        .replaceAll(RegExp(r'\b2\b'), 'two')
+        .replaceAll(RegExp(r'\b3\b'), 'three')
+        .replaceAll(RegExp(r'\b4\b'), 'four')
+        .replaceAll(RegExp(r'\b5\b'), 'five')
+        .replaceAll(RegExp(r'\b8\b'), 'eight')
+        // Handle standalone "half" and "quarter" only if not already preceded by a number word
+        .replaceAll(RegExp(r'(?<!one\s)\bhalf\b'), 'one half')
+        .replaceAll(RegExp(r'(?<!one\s)\bquarter\b'), 'one fourth');
 
-  // Check if two strings are similar (allowing for minor differences)
-  bool _isSimilar(String str1, String str2) {
-    // Split into words and check if key words match
-    List<String> words1 = str1.split(' ').where((w) => w.isNotEmpty).toList();
-    List<String> words2 = str2.split(' ').where((w) => w.isNotEmpty).toList();
-
-    print('Debug - Similarity check: words1=$words1, words2=$words2');
-
-    // Special handling for partial matches (e.g., "one" vs "one half")
-    if (words1.length < words2.length) {
-      // Check if all recognized words are correct and in order
-      bool allCorrect = true;
-      for (int i = 0; i < words1.length; i++) {
-        if (i >= words2.length || words1[i] != words2[i]) {
-          allCorrect = false;
-          break;
-        }
-      }
-
-      if (allCorrect) {
-        print(
-            'Debug - Partial match found: recognized words are correct start of expected phrase');
-        // Accept partial matches that are at least 50% of the expected phrase
-        double completeness = words1.length / words2.length;
-        print(
-            'Debug - Completeness: ${(completeness * 100).toStringAsFixed(1)}%');
-        return completeness >= 0.5; // Accept if at least 50% complete
-      }
-    }
-
-    // If both have same number of words and are short phrases, be more lenient
-    if (words1.length <= 2 && words2.length <= 2) {
-      int exactMatches = 0;
-      for (String expectedWord in words2) {
-        for (String recognizedWord in words1) {
-          if (recognizedWord == expectedWord) {
-            exactMatches++;
-            break;
-          }
-        }
-      }
-      print(
-          'Debug - Short phrase exact matches: $exactMatches/${words2.length}');
-
-      // For short phrases, accept if we have at least 50% match
-      double matchPercentage = exactMatches / words2.length;
-      print(
-          'Debug - Match percentage: ${(matchPercentage * 100).toStringAsFixed(1)}%');
-      return matchPercentage >=
-          0.5; // More lenient: 50% match for short phrases
-    }
-
-    // For longer phrases, use the original logic
-    int matchCount = 0;
-    for (String expectedWord in words2) {
-      for (String recognizedWord in words1) {
-        if (recognizedWord == expectedWord ||
-            recognizedWord.contains(expectedWord) ||
-            expectedWord.contains(recognizedWord)) {
-          matchCount++;
-          break;
-        }
-      }
-    }
-
-    print('Debug - Match count: $matchCount/${words2.length}');
-    // Consider it correct if most expected words are found
-    return matchCount >=
-        words2.length * 0.5; // More lenient: 50% match threshold
+    return cleaned.trim();
   }
 
   // Speak the feedback and correct answer if needed
@@ -524,30 +504,63 @@ class _PronunciationGameState extends State<PronunciationGame> {
   // Move to next fraction
   void _nextFraction() {
     if (_currentIndex < fractionSet.length - 1) {
+      // Stop any ongoing speech recognition immediately
+      if (_speech.isListening) {
+        _speech.stop();
+      }
+      if (_isRecording) {
+        _audioRecorder.stop();
+      }
+
       setState(() {
         _currentIndex++;
+        // Reset all game state immediately in the same setState
+        _hasAnswered = false;
+        _feedback = '';
         _recognizedWords = '';
+        _isCorrect = false;
+        _isListening = false;
+        _isRecording = false;
       });
-      _randomizeLanguage();
+      _initTts(); // Reinitialize TTS with current language
     }
   }
 
   // Move to previous fraction
   void _previousFraction() {
     if (_currentIndex > 0) {
+      // Stop any ongoing speech recognition immediately
+      if (_speech.isListening) {
+        _speech.stop();
+      }
+      if (_isRecording) {
+        _audioRecorder.stop();
+      }
+
       setState(() {
         _currentIndex--;
+        // Reset all game state immediately in the same setState
+        _hasAnswered = false;
+        _feedback = '';
         _recognizedWords = '';
+        _isCorrect = false;
+        _isListening = false;
+        _isRecording = false;
       });
-      _randomizeLanguage();
+      _initTts(); // Reinitialize TTS with current language
     }
+  }
+
+  // Replay current fraction
+  void _replayFraction() {
+    _resetGameState();
+    _initTts(); // Reinitialize TTS with current language
   }
 
   // Reset current game
   void _resetGame() {
     setState(() {
       _currentIndex = 0;
-      score = 0;
       _recognizedWords = '';
     });
     _randomizeLanguage();
@@ -678,49 +691,33 @@ Instructions: Look at the fraction and say it out loud in the requested language
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
-          'Pronunciation Practice',
-          style: TextStyle(fontSize: 30),
+          'Speak the Fraction',
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
         actions: [
+          IconButton(
+            icon: Icon(
+                _isEnglishMode ? Icons.translate : Icons.translate_outlined),
+            onPressed: _toggleLanguage,
+            tooltip: _isEnglishMode ? 'Switch to Spanish' : 'Switch to English',
+          ),
           IconButton(
             icon: const Icon(Icons.info, size: 30),
             onPressed: () => showTemporaryPopup(
                 "Look at the fraction and say it out loud in the requested language!"),
-          ),
-          IconButton(
-            icon: const Icon(Icons.smart_toy, size: 30),
-            onPressed: showChatbotPopup,
           ),
         ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Score display
-          Text.rich(TextSpan(children: [
-            const TextSpan(text: "Score: ", style: TextStyle(fontSize: 25)),
-            TextSpan(
-                text: "$score",
-                style: const TextStyle(
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                ))
-          ])),
-
           // Language mode indicator
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            decoration: BoxDecoration(
-              color: _isEnglishMode
-                  ? Colors.blue.shade100
-                  : Colors.orange.shade100,
-              borderRadius: BorderRadius.circular(20),
-            ),
             child: Text(
-              _isEnglishMode ? 'Say this in English' : 'Di esto en español',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              _isEnglishMode ? 'in English!' : 'en español!',
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
           ),
 
@@ -728,7 +725,7 @@ Instructions: Look at the fraction and say it out loud in the requested language
           Container(
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 3),
+              color: randomBoxColor,
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
@@ -736,18 +733,22 @@ Instructions: Look at the fraction and say it out loud in the requested language
                 Text(
                   currentFraction.numerator,
                   style: const TextStyle(
-                      fontSize: 80, fontWeight: FontWeight.bold),
+                      fontSize: 80,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 Container(
                   height: 5,
                   width: 100,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
                 const SizedBox(height: 5),
                 Text(
                   currentFraction.denominator,
                   style: const TextStyle(
-                      fontSize: 80, fontWeight: FontWeight.bold),
+                      fontSize: 80,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ],
             ),
@@ -761,28 +762,42 @@ Instructions: Look at the fraction and say it out loud in the requested language
                 if (_isListening)
                   const Text(
                     'Listening...',
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                    style: TextStyle(fontSize: 20, color: Color(0xFF8F87F1)),
                   ),
-                if (_recognizedWords.isNotEmpty)
+                if (_hasAnswered)
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'You said: "$_recognizedWords"',
-                        style: const TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center,
-                      ),
-                      if (_hasAnswered)
-                        Text(
-                          'Expected: "${_isEnglishMode ? fractionSet[_currentIndex].englishPronunciation : fractionSet[_currentIndex].spanishPronunciation}"',
-                          style:
-                              const TextStyle(fontSize: 16, color: Colors.grey),
-                          textAlign: TextAlign.center,
+                      if (_hasAnswered) ...[
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'Expected:',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              '"${_isEnglishMode ? fractionSet[_currentIndex].englishPronunciation : fractionSet[_currentIndex].spanishPronunciation}"',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
+                      ],
                     ],
                   ),
                 if (_hasAnswered)
                   Container(
-                    margin: const EdgeInsets.only(top: 10),
+                    margin: const EdgeInsets.only(top: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -791,17 +806,15 @@ Instructions: Look at the fraction and say it out loud in the requested language
                           color: _isCorrect ? Colors.green : Colors.red,
                           size: 30,
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            _feedback,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: _isCorrect ? Colors.green : Colors.red,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
+                        const SizedBox(width: 8),
+                        Text(
+                          _feedback,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: _isCorrect ? Colors.green : Colors.red,
+                            fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -812,14 +825,20 @@ Instructions: Look at the fraction and say it out loud in the requested language
 
           // Microphone button
           GestureDetector(
-            onTapDown: (_) => _startListening(),
-            onTapUp: (_) => _stopListening(),
-            onTapCancel: () => _stopListening(),
+            onTap: () {
+              if (_isListening) {
+                _stopListening();
+              } else if (!_hasAnswered) {
+                _startListening();
+              }
+            },
             child: Container(
               width: 100,
               height: 100,
               decoration: BoxDecoration(
-                color: _isListening ? Colors.red : Colors.blue,
+                color: _hasAnswered
+                    ? Colors.grey
+                    : (_isListening ? Colors.red : Color(0xFF8F87F1)),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -830,7 +849,7 @@ Instructions: Look at the fraction and say it out loud in the requested language
                 ],
               ),
               child: Icon(
-                Icons.mic,
+                _isListening ? Icons.stop : Icons.mic,
                 color: Colors.white,
                 size: 50,
               ),
@@ -840,62 +859,69 @@ Instructions: Look at the fraction and say it out loud in the requested language
           Column(
             children: [
               Text(
-                'Hold to speak',
+                _hasAnswered
+                    ? 'Answer recorded'
+                    : (_isListening ? 'Tap to stop' : 'Tap to speak'),
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
-              Text(
-                'Speak slowly and clearly',
-                style: TextStyle(fontSize: 14, color: Colors.grey),
-              ),
-              if (_useWhisper)
+              if (!_hasAnswered)
                 Text(
-                  'Using Whisper AI',
-                  style: TextStyle(fontSize: 12, color: Colors.green),
-                )
-              else
-                Text(
-                  'Using device recognition',
-                  style: TextStyle(fontSize: 12, color: Colors.orange),
+                  'Speak clearly and at normal pace',
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
             ],
           ),
 
           // Navigation buttons
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back_rounded, size: 35),
-                onPressed: () => _currentIndex > 0
-                    ? _previousFraction()
-                    : Navigator.pop(context),
+              if (_currentIndex > 0)
+                ElevatedButton(
+                  onPressed: _previousFraction,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8F87F1),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Previous'),
+                ),
+              if (_currentIndex > 0) const SizedBox(width: 16),
+              // Replay button
+              ElevatedButton.icon(
+                onPressed: _replayFraction,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF8F87F1),
+                  foregroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                icon: const Icon(Icons.replay, size: 20),
+                label: const Text('Replay'),
               ),
-              IconButton(
-                icon: const Icon(Icons.replay, size: 35),
-                onPressed: _resetGame,
-              ),
-              if (_hasAnswered)
+              if (_currentIndex < fractionSet.length - 1)
+                const SizedBox(width: 16),
+              if (_currentIndex < fractionSet.length - 1)
                 ElevatedButton(
                   onPressed: _nextFraction,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.black,
-                    minimumSize: const Size(95, 40),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    backgroundColor: const Color(0xFF8F87F1),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('Next', style: TextStyle(fontSize: 18)),
+                  child: const Text('Next'),
                 ),
-              IconButton(
-                icon: const Icon(Icons.arrow_forward_rounded, size: 35),
-                onPressed: () {
-                  if (_currentIndex < fractionSet.length - 1) {
-                    _nextFraction();
-                  }
-                },
-              ),
             ],
           ),
 

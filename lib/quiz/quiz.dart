@@ -49,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 2), () {
           if (mounted) {
             Navigator.of(context).pop(true);
           }

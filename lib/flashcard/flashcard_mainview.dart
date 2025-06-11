@@ -48,6 +48,14 @@ class _flashcardState extends State<flashcard> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFFFFFFA),
+          title: Text('Flashcards',
+              style: GoogleFonts.comicNeue(
+                fontSize: 28,
+              )),
+          centerTitle: true,
+        ),
         backgroundColor: const Color(0xFFFFFFFA),
         body: Center(
           child: Column(

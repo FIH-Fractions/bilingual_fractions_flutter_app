@@ -175,6 +175,15 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
                           _chatHistory.add({"role": "model", "text": aiReply});
                         });
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF8F87F1),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       child: const Text("Get Hint"),
                     ),
                   ],
@@ -286,38 +295,67 @@ class _EatingFruitsGameState extends State<EatingFruitsGame> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back_rounded, size: 35),
-                onPressed: () => _currentIndex > 0
-                    ? showPreviousSet()
-                    : Navigator.pop(context),
-              ),
-              IconButton(
-                icon: const Icon(Icons.replay, size: 35),
-                onPressed: () => setState(() => initGame()),
-              ),
               if (!gameOver)
                 ElevatedButton(
                   onPressed: onSubmit,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.black,
-                    minimumSize: const Size(95, 40),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    backgroundColor: const Color(0xFF8F87F1),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('Submit', style: TextStyle(fontSize: 18)),
+                  child: const Text('Submit'),
                 ),
-              IconButton(
-                icon: const Icon(Icons.arrow_forward_rounded, size: 35),
-                onPressed: () {
-                  if (_currentIndex < gameset.length - 1) {
-                    showNextSet();
-                  }
-                },
-              ),
+              if (gameOver) ...[
+                ElevatedButton(
+                  onPressed: () => _currentIndex > 0
+                      ? showPreviousSet()
+                      : Navigator.pop(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8F87F1),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Previous'),
+                ),
+                ElevatedButton(
+                  onPressed: () => setState(() => initGame()),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8F87F1),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Replay'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_currentIndex < gameset.length - 1) {
+                      showNextSet();
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8F87F1),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Next'),
+                ),
+              ]
             ],
           ),
           const SizedBox(height: 25),

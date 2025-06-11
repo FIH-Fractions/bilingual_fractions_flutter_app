@@ -42,7 +42,7 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Choose a Quiz', style: TextStyle(fontSize: 28)),
+        title: Text('Quizzes', style: TextStyle(fontSize: 28)),
         centerTitle: true,
       ),
       body: Padding(
