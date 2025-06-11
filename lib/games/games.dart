@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'matching_game.dart';
 import 'eating_fruits_game.dart';
 import 'exercise.dart';
+import 'pronunciation_game.dart';
 
 class Games extends StatelessWidget {
   const Games({Key? key}) : super(key: key);
@@ -105,7 +106,7 @@ class Games extends StatelessWidget {
                   ),
                 ),
               ),
-              // Add a fourth tile here, example:
+              // Fruits Basket Game
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -118,13 +119,40 @@ class Games extends StatelessWidget {
                   height: 150,
                   margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
-                    color: Color(
-                        0xFF476E62), // Choose a different color for the third tile
+                    color: Color(0xFF476E62),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
                     child: Text(
-                      'Fruits Basket Game', // Name of the third game
+                      'Fruits Basket Game',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Pronunciation Game
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PronunciationGame()),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 150,
+                  margin: const EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF2E4F47),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Pronunciation Practice',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 35,

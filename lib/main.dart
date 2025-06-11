@@ -12,7 +12,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(); // Load environment variables
+  await dotenv.load(
+      fileName: "assets/.env"); // Load environment variables from assets folder
 
   if (kIsWeb) {
     await Firebase.initializeApp(

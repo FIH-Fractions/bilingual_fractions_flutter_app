@@ -4,6 +4,10 @@
 <dict>
     <key>NSSpeechSynthesisUsageDescription</key>
     <string>This app requires access to speech synthesis in order to provide translation services.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires access to microphone for speech recognition in pronunciation practice.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>This app uses speech recognition to check pronunciation of fractions.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

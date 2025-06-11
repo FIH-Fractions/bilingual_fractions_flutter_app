@@ -1,7 +1,7 @@
 import 'package:bilingual_fractions_flutter_app/games/games.dart';
 import 'package:flutter/material.dart';
-
 import '../main.dart';
+import '../services/gemini_chat_service.dart';
 
 class FruitsBasketGame extends StatefulWidget {
   @override
@@ -63,6 +63,10 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
   List<String> fruitsInBasket = [];
   List<int> gridPattern = [1, 3, 1];
   int score = 0;
+
+  // Add these new variables for chatbot
+  TextEditingController _chatController = TextEditingController();
+  List<Map<String, String>> _chatHistory = [];
 
   void isFruitInBasket(Fruit fruit) {
     setState(() {
@@ -173,6 +177,99 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
     });
   }
 
+  void showChatbotPopup() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setStatePopup) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              content: Container(
+                width: double.maxFinite,
+                height: 500,
+                child: Column(
+                  children: [
+                    const Text("Math Helper",
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold)),
+                    const Divider(),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: _chatHistory.length,
+                        itemBuilder: (context, index) {
+                          final entry = _chatHistory[index];
+                          final isUser = entry['role'] == 'user';
+                          return Align(
+                            alignment: isUser
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 4, horizontal: 8),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: isUser
+                                    ? Colors.blue.shade100
+                                    : Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                entry['text']!,
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextField(
+                      controller: _chatController,
+                      decoration: const InputDecoration(
+                        hintText: "Ask for a hint...",
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final userMessage = _chatController.text;
+                        if (userMessage.trim().isEmpty) return;
+
+                        _chatController.clear();
+
+                        setState(() {
+                          _chatHistory
+                              .add({"role": "user", "text": userMessage});
+                        });
+
+                        final gameContext = '''
+Game Title: Let's create a balanced fruit basket using fractions!
+Instructions: Create a balanced fruit basket with one-nth Apples, two-nth Grapes, one-nth Bananas, and one-nth Lime.
+Current Task: Match each fruit to its fraction and create a balanced basket.
+''';
+                        final aiReply = await GeminiChatService.getHint(
+                            userMessage, gameContext);
+
+                        setStatePopup(() {
+                          _chatHistory.add({"role": "model", "text": aiReply});
+                        });
+                      },
+                      child: const Text("Get Hint"),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Fruit> inBasketFruits =
@@ -202,6 +299,10 @@ class _FruitsBasketGameState extends State<FruitsBasketGame> {
                     "Drag the fruits in the basket! Click to remove them!");
               },
             ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.smart_toy, size: 30),
+            onPressed: showChatbotPopup,
           ),
         ],
       ),
