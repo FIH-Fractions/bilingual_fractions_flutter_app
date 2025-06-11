@@ -1,8 +1,10 @@
 import 'package:bilingual_fractions_flutter_app/games/fruits_basket_game.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'flashcard/flashcard_mainview.dart';
 import 'games/games.dart';
 import 'home/home.dart';
+import 'learn/learn_slides.dart';
 import 'profile/progress.dart';
 import 'quiz/quiz_selection_screen.dart'; // Updated import
 import 'package:firebase_core/firebase_core.dart';
@@ -51,9 +53,21 @@ class BottomNavBarApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: BottomNavBar(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFFFFFFA),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFFFFFFA),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color(0xFFFFFFFA),
+        ),
+        textTheme: GoogleFonts.comicNeueTextTheme(
+          ThemeData.light().textTheme,
+        ),
+      ),
     );
   }
 }
@@ -71,6 +85,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
     home(),
+    LearnPage(),
     flashcard(),
     QuizSelectionScreen(), // Updated to use QuizSelectionScreen instead of QuizPage
     Games(),
@@ -85,36 +100,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: IconButton(
-            icon: const Icon(
-              Icons.person,
-              size: 35,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => progress()),
-              );
-            },
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: IconButton(
-              icon: const Icon(
-                Icons.translate_rounded,
-                size: 35,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBar(),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -127,6 +113,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
               size: 35,
             ),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.school_rounded,
+              size: 35,
+            ),
+            label: 'Learn',
           ),
           BottomNavigationBarItem(
             icon: Icon(

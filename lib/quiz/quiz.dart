@@ -126,133 +126,148 @@ class _QuizPageState extends State<QuizPage> {
             Text('${getCategoryName(widget.category)} Quiz - Score: $_score'),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: <Widget>[
-              Text(
-                'Question ${_currentIndex + 1} of ${questions.length}',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 10.0),
-              LinearProgressIndicator(
-                value: (_currentIndex + 1) / questions.length,
-                backgroundColor: Colors.grey[300],
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  _getProgressColor((_currentIndex + 1) / questions.length),
-                ),
-                minHeight: 10,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              SizedBox(height: 20.0),
-              Text(
-                currentQuestion.question,
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 15.0),
-              Image.asset(
-                currentQuestion.imagePath,
-                width: 500,
-                height: 340,
-                fit: BoxFit.contain,
-              ),
-              SizedBox(height: 15.0), // Space above the answer row
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 10.0,
-                runSpacing: 10.0,
-                children: currentQuestion.answers.asMap().entries.map((entry) {
-                  int idx = entry.key;
-                  String answer = entry.value;
-
-                  // Determine button background color based on selection and correctness
-                  Color backgroundColor = Color(0xFFF4F4DC); // Default color
-                  if (_selectedAnswerIndex != null) {
-                    if (idx == _selectedAnswerIndex) {
-                      backgroundColor =
-                          idx == currentQuestion.correctAnswerIndex
-                              ? Colors.green
-                              : Colors.red;
-                    } else if (idx == currentQuestion.correctAnswerIndex) {
-                      backgroundColor = Colors
-                          .green; // Highlight correct answer if another answer was selected
-                    } else {
-                      backgroundColor = Colors
-                          .grey; // Neutral color for unselected wrong answers
-                    }
-                  }
-
-                  return Container(
-                    width: MediaQuery.of(context).size.width / 2 - 25,
-                    margin: EdgeInsets.symmetric(vertical: 5.0),
-                    child: ElevatedButton(
-                      onPressed: () => _selectAnswer(idx),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(
-                          answer,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: backgroundColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: 40.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  kToolbarHeight -
+                  MediaQuery.of(context).padding.top,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  if (_currentIndex > 0)
-                    ElevatedButton(
-                      onPressed: _showPreviousQuestion,
-                      child: Text('Back'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFF4F4DC),
-                        foregroundColor: Colors.black,
-                      ),
-                    ),
-                  ElevatedButton(
-                    onPressed: currentQuestion.youtubeLink != null
-                        ? () async {
-                            final url = currentQuestion.youtubeLink!;
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            }
-                          }
-                        : null,
-                    child: Text('Watch Tutorial'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFF4F4DC),
-                      foregroundColor: Colors.black,
-                    ),
+                  Text(
+                    'Question ${_currentIndex + 1} of ${questions.length}',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
                   ),
-                  ElevatedButton(
-                    onPressed:
-                        _selectedAnswerIndex != null ? _showNextQuestion : null,
-                    child: Text(_currentIndex < questions.length - 1
-                        ? 'Next'
-                        : 'Finish'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFF4F4DC),
-                      foregroundColor: Colors.black,
+                  SizedBox(height: 10.0),
+                  LinearProgressIndicator(
+                    value: (_currentIndex + 1) / questions.length,
+                    backgroundColor: Colors.grey[300],
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      _getProgressColor((_currentIndex + 1) / questions.length),
                     ),
+                    minHeight: 10,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  SizedBox(height: 20.0),
+                  Text(
+                    currentQuestion.question,
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 15.0),
+                  Image.asset(
+                    currentQuestion.imagePath,
+                    width: 500,
+                    height: 340,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(height: 15.0), // Space above the answer row
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    children:
+                        currentQuestion.answers.asMap().entries.map((entry) {
+                      int idx = entry.key;
+                      String answer = entry.value;
+
+                      // Determine button background color based on selection and correctness
+                      Color backgroundColor =
+                          Color(0xFFF4F4DC); // Default color
+                      if (_selectedAnswerIndex != null) {
+                        if (idx == _selectedAnswerIndex) {
+                          backgroundColor =
+                              idx == currentQuestion.correctAnswerIndex
+                                  ? Colors.green
+                                  : Colors.red;
+                        } else if (idx == currentQuestion.correctAnswerIndex) {
+                          backgroundColor = Colors
+                              .green; // Highlight correct answer if another answer was selected
+                        } else {
+                          backgroundColor = Colors
+                              .grey; // Neutral color for unselected wrong answers
+                        }
+                      }
+
+                      return Container(
+                        width: MediaQuery.of(context).size.width / 2 - 25,
+                        margin: EdgeInsets.symmetric(vertical: 5.0),
+                        child: ElevatedButton(
+                          onPressed: () => _selectAnswer(idx),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              answer,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: backgroundColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(height: 40.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      if (_currentIndex > 0)
+                        ElevatedButton(
+                          onPressed: _showPreviousQuestion,
+                          child: Text('Previous'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF8F87F1),
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
+                      ElevatedButton(
+                        onPressed: currentQuestion.youtubeLink != null
+                            ? () async {
+                                final url = currentQuestion.youtubeLink!;
+                                if (await canLaunch(url)) {
+                                  await launch(url);
+                                }
+                              }
+                            : null,
+                        child: Text('Watch Tutorial'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF8F87F1),
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: _selectedAnswerIndex != null
+                            ? _showNextQuestion
+                            : null,
+                        child: Text(_currentIndex < questions.length - 1
+                            ? 'Next'
+                            : 'Finish'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF8F87F1),
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),

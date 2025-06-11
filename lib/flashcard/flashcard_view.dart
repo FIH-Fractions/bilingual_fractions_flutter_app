@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FlashcardView extends StatelessWidget {
-
   final String textEn;
   final String textEs;
   final VoidCallback onToggleLanguage;
@@ -22,13 +22,14 @@ class FlashcardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: const Color(0xFFFFFFFA),
       child: Stack(
         children: [
           Align(
             alignment: Alignment.center,
             child: Text(
               isEnglish ? textEn : textEs,
-              style: const TextStyle(
+              style: GoogleFonts.comicNeue(
                 fontSize: 60,
               ),
               textAlign: TextAlign.center,
@@ -67,5 +68,3 @@ class FlashcardView extends StatelessWidget {
     );
   }
 }
-
-

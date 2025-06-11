@@ -1,6 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'flashcard.dart';
 import 'flashcard_view.dart';
 
@@ -12,7 +13,6 @@ class flashcard extends StatefulWidget {
 }
 
 class _flashcardState extends State<flashcard> {
-
   final FlutterTts flutterTts = FlutterTts();
   bool _isEnglish = true;
 
@@ -27,20 +27,17 @@ class _flashcardState extends State<flashcard> {
         question: "What fraction does the Pizza represent?",
         answerEn: "Half", // English answer
         answerEs: "Medio", // Spanish answer
-        imagePath: "assets/flashcards/half_pizza.png"
-    ),
+        imagePath: "assets/flashcards/half_pizza.png"),
     Flashcard(
         question: "What fraction does the Cake represent?",
         answerEn: "Three Fourths!",
         answerEs: "Tres Cuartos!",
-        imagePath: "assets/flashcards/three_fourth_cake.png"
-    ),
+        imagePath: "assets/flashcards/three_fourth_cake.png"),
     Flashcard(
         question: "What fraction does the Lemon represent?",
         answerEn: "One Third!",
         answerEs: "Un Tercio!",
-        imagePath: "assets/flashcards/one_third_lemon.png"
-    ),
+        imagePath: "assets/flashcards/one_third_lemon.png"),
   ];
 
   int _currentIndex = 0;
@@ -51,6 +48,7 @@ class _flashcardState extends State<flashcard> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: const Color(0xFFFFFFFA),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -62,6 +60,7 @@ class _flashcardState extends State<flashcard> {
                   key: cardKey,
                   flipOnTouch: true,
                   front: Card(
+                    color: const Color(0xFFFFFFFA),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -70,7 +69,7 @@ class _flashcardState extends State<flashcard> {
                           Text(
                             _flashcards[_currentIndex].question,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: GoogleFonts.comicNeue(
                               fontSize: 24,
                             ),
                           ),
@@ -83,24 +82,50 @@ class _flashcardState extends State<flashcard> {
                       ),
                     ),
                   ),
-                  back:  FlashcardView(
+                  back: FlashcardView(
                     textEn: _flashcards[_currentIndex].answerEn,
                     textEs: _flashcards[_currentIndex].answerEs,
-                    onToggleLanguage: () => setState(() => _isEnglish = !_isEnglish),
+                    onToggleLanguage: () =>
+                        setState(() => _isEnglish = !_isEnglish),
                     isEnglish: _isEnglish,
                     flutterTts: flutterTts,
                   ),
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(onPressed: _currentIndex > 0 ? showPreviousCard : null, icon: const Icon(Icons.arrow_back_rounded, size: 35,)),
-                  Text(
-                    '${_currentIndex + 1} / ${_flashcards.length}', // Display current index + 1 and total count
-                    style: const TextStyle(fontSize: 20),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8F87F1),
+                      textStyle: GoogleFonts.comicNeue(),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: _currentIndex > 0 ? showPreviousCard : null,
+                    child: const Text('Previous'),
                   ),
-                  IconButton(onPressed: _currentIndex < _flashcards.length - 1 ? showNextCard : null, icon: Icon(Icons.arrow_forward_rounded, size: 35,)),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8F87F1),
+                      foregroundColor: Colors.white,
+                      textStyle: GoogleFonts.comicNeue(),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: _currentIndex < _flashcards.length - 1
+                        ? showNextCard
+                        : null,
+                    child: const Text('Next'),
+                  ),
                 ],
               )
             ],
@@ -109,24 +134,25 @@ class _flashcardState extends State<flashcard> {
       ),
       debugShowCheckedModeBanner: false,
     );
-
   }
-  void showNextCard(){
+
+  void showNextCard() {
     setState(() {
-      _currentIndex = (_currentIndex + 1 < _flashcards.length) ? _currentIndex + 1 : 0;
+      _currentIndex =
+          (_currentIndex + 1 < _flashcards.length) ? _currentIndex + 1 : 0;
       _isEnglish = true;
       flutterTts.setLanguage("en-US");
       cardKey = GlobalKey<FlipCardState>();
     });
   }
 
-  void showPreviousCard(){
+  void showPreviousCard() {
     setState(() {
-      _currentIndex = (_currentIndex - 1 >= 0) ? _currentIndex - 1 : _flashcards.length - 1;
+      _currentIndex =
+          (_currentIndex - 1 >= 0) ? _currentIndex - 1 : _flashcards.length - 1;
       _isEnglish = true;
       flutterTts.setLanguage("en-US");
       cardKey = GlobalKey<FlipCardState>();
     });
   }
-
 }
