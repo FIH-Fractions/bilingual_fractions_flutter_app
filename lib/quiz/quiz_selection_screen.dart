@@ -17,6 +17,8 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
     QuizCategory.advanced: 0,
   };
 
+  bool isEnglish = true;
+
   @override
   void initState() {
     super.initState();
@@ -42,8 +44,29 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quizzes', style: TextStyle(fontSize: 28)),
+        title: Text(
+          isEnglish ? 'Quizzes' : 'Cuestionarios',
+          style: TextStyle(fontSize: 28),
+        ),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: IconButton(
+              icon: const Icon(
+                Icons.translate_rounded,
+                size: 30,
+                color: Colors.black87,
+              ),
+              onPressed: () {
+                setState(() {
+                  isEnglish = !isEnglish;
+                });
+              },
+              tooltip: isEnglish ? 'Cambiar a español' : 'Switch to English',
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -52,12 +75,14 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
           children: [
             SizedBox(height: 20),
             Text(
-              'Select a quiz difficulty:',
+              isEnglish
+                  ? 'Select a quiz difficulty:'
+                  : 'Selecciona una dificultad de cuestionario:',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            // Total score display as text
+            // Total score display
             Container(
               padding: EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
@@ -71,7 +96,9 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
                       size: 32, color: Colors.blue.shade800),
                   SizedBox(width: 10),
                   Text(
-                    'Total Score: $totalScore points',
+                    isEnglish
+                        ? 'Total Score: $totalScore points'
+                        : 'Puntuación Total: $totalScore puntos',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -81,60 +108,177 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
-            // Single row of quiz category tiles
+            SizedBox(height: 40),
+            // Responsive quiz tiles
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: _buildQuizTile(
-                      context,
-                      title: 'Beginner',
-                      color: Colors.green.shade300,
-                      icon: Icons.star,
-                      score: quizScores[QuizCategory.beginner]!,
-                      category: QuizCategory.beginner,
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: _buildQuizTile(
-                      context,
-                      title: 'Intermediate',
-                      color: Colors.orange.shade300,
-                      icon: Icons.star_half,
-                      score: quizScores[QuizCategory.intermediate]!,
-                      category: QuizCategory.intermediate,
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: _buildQuizTile(
-                      context,
-                      title: 'Advanced',
-                      color: Colors.red.shade300,
-                      icon: Icons.star_border,
-                      score: quizScores[QuizCategory.advanced]!,
-                      category: QuizCategory.advanced,
-                    ),
-                  ),
-                ],
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return _buildResponsiveQuizLayout(constraints.maxWidth);
+                },
               ),
             ),
+            // Add some bottom spacing
+            SizedBox(height: 40),
           ],
         ),
       ),
     );
   }
 
+  Widget _buildResponsiveQuizLayout(double screenWidth) {
+    // Define breakpoints
+    bool isMobile = screenWidth < 600;
+    bool isTablet = screenWidth >= 600 && screenWidth < 1000;
+    bool isDesktop = screenWidth >= 1000;
+
+    if (isMobile) {
+      // Mobile: Stack tiles vertically
+      return Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildQuizTile(
+                context,
+                titleEn: 'Beginner',
+                titleEs: 'Principiante',
+                color: Colors.green.shade300,
+                icon: Icons.star,
+                score: quizScores[QuizCategory.beginner]!,
+                category: QuizCategory.beginner,
+                width: screenWidth * 0.8, // 80% of screen width
+                height: 180,
+              ),
+              SizedBox(height: 16),
+              _buildQuizTile(
+                context,
+                titleEn: 'Intermediate',
+                titleEs: 'Intermedio',
+                color: Colors.orange.shade300,
+                icon: Icons.star_half,
+                score: quizScores[QuizCategory.intermediate]!,
+                category: QuizCategory.intermediate,
+                width: screenWidth * 0.8,
+                height: 180,
+              ),
+              SizedBox(height: 16),
+              _buildQuizTile(
+                context,
+                titleEn: 'Advanced',
+                titleEs: 'Avanzado',
+                color: Colors.red.shade300,
+                icon: Icons.star_border,
+                score: quizScores[QuizCategory.advanced]!,
+                category: QuizCategory.advanced,
+                width: screenWidth * 0.8,
+                height: 180,
+              ),
+            ],
+          ),
+        ),
+      );
+    } else if (isTablet) {
+      // Tablet: Row with medium-sized tiles
+      return Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildQuizTile(
+              context,
+              titleEn: 'Beginner',
+              titleEs: 'Principiante',
+              color: Colors.green.shade300,
+              icon: Icons.star,
+              score: quizScores[QuizCategory.beginner]!,
+              category: QuizCategory.beginner,
+              width: (screenWidth - 64) / 3, // Divide by 3 with spacing
+              height: 300,
+            ),
+            SizedBox(width: 16),
+            _buildQuizTile(
+              context,
+              titleEn: 'Intermediate',
+              titleEs: 'Intermedio',
+              color: Colors.orange.shade300,
+              icon: Icons.star_half,
+              score: quizScores[QuizCategory.intermediate]!,
+              category: QuizCategory.intermediate,
+              width: (screenWidth - 64) / 3,
+              height: 300,
+            ),
+            SizedBox(width: 16),
+            _buildQuizTile(
+              context,
+              titleEn: 'Advanced',
+              titleEs: 'Avanzado',
+              color: Colors.red.shade300,
+              icon: Icons.star_border,
+              score: quizScores[QuizCategory.advanced]!,
+              category: QuizCategory.advanced,
+              width: (screenWidth - 64) / 3,
+              height: 300,
+            ),
+          ],
+        ),
+      );
+    } else {
+      // Desktop: Row with max width and centered
+      double maxTileWidth = 250;
+      return Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildQuizTile(
+              context,
+              titleEn: 'Beginner',
+              titleEs: 'Principiante',
+              color: Colors.green.shade300,
+              icon: Icons.star,
+              score: quizScores[QuizCategory.beginner]!,
+              category: QuizCategory.beginner,
+              width: maxTileWidth,
+              height: 350,
+            ),
+            SizedBox(width: 24),
+            _buildQuizTile(
+              context,
+              titleEn: 'Intermediate',
+              titleEs: 'Intermedio',
+              color: Colors.orange.shade300,
+              icon: Icons.star_half,
+              score: quizScores[QuizCategory.intermediate]!,
+              category: QuizCategory.intermediate,
+              width: maxTileWidth,
+              height: 350,
+            ),
+            SizedBox(width: 24),
+            _buildQuizTile(
+              context,
+              titleEn: 'Advanced',
+              titleEs: 'Avanzado',
+              color: Colors.red.shade300,
+              icon: Icons.star_border,
+              score: quizScores[QuizCategory.advanced]!,
+              category: QuizCategory.advanced,
+              width: maxTileWidth,
+              height: 350,
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   Widget _buildQuizTile(
     BuildContext context, {
-    required String title,
+    required String titleEn,
+    required String titleEs,
     required Color color,
     required IconData icon,
     required int score,
     required QuizCategory category,
+    required double width,
+    required double height,
   }) {
     return GestureDetector(
       onTap: () async {
@@ -151,12 +295,20 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
           });
         }
       },
-      child: Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
           borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: Offset(0, 4),
+            ),
+          ],
         ),
-        color: color,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -165,7 +317,7 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
               Icon(icon, size: 50, color: Colors.white),
               SizedBox(height: 16),
               Text(
-                title,
+                isEnglish ? titleEn : titleEs,
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -174,7 +326,7 @@ class _QuizSelectionScreenState extends State<QuizSelectionScreen> {
               ),
               SizedBox(height: 8),
               Text(
-                'Score: $score',
+                isEnglish ? 'Score: $score' : 'Puntuación: $score',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
