@@ -43,7 +43,7 @@ class _GamesState extends State<Games> {
         titleEn: 'Write Fractions',
         titleEs: 'Escribir Fracciones',
         imagePath: 'game_icons/write_fractions.jpg',
-        color: const Color(0xFFA2D1C2),
+        color: const Color(0xFF4AA3B6),
         page: const FractionWritingGame(),
         descriptionEn:
             'Learn to write fractions by practicing with visual examples',
@@ -54,7 +54,7 @@ class _GamesState extends State<Games> {
         titleEn: 'Speak Fractions',
         titleEs: 'Pronunciar Fracciones',
         imagePath: 'game_icons/speak_fractions.jpg',
-        color: const Color(0xFF7ABDA9),
+        color: const Color(0xFFD76D23),
         page: PronunciationGame(),
         descriptionEn: 'Practice pronouncing fractions in English and Spanish',
         descriptionEs:
@@ -74,7 +74,7 @@ class _GamesState extends State<Games> {
         titleEn: 'Eat The Fruits',
         titleEs: 'Comer las Frutas',
         imagePath: 'game_icons/eat_fruits.jpg',
-        color: const Color(0xFF476E62),
+        color: const Color(0xFF545FA7),
         page: EatingFruitsGame(),
         descriptionEn: 'Click on fruits to eat the correct fraction amounts',
         descriptionEs:
@@ -84,7 +84,7 @@ class _GamesState extends State<Games> {
         titleEn: 'Fruits Basket',
         titleEs: 'Canasta de Frutas',
         imagePath: 'game_icons/fruits_basket.jpg',
-        color: const Color(0xFF2E4F47),
+        color: const Color(0xFF6C8D28),
         page: FruitsBasketGame(),
         descriptionEn: 'Create balanced fruit baskets using fraction concepts',
         descriptionEs:
