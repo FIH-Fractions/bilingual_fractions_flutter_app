@@ -121,4 +121,10 @@ final List<LearnSlide> learnSlides = [
     descEs:
         "Aquí tienes algunas de las fracciones más comunes.\nUna buena regla para recordar es que la mayoría de los números ordinales terminan en \"avo\" o \"ésimo\" en español.\nAsí que 1/20 sería un vigésimo. 1/35 sería un trigésimo quinto.",
   ),
+  LearnSlide(
+    titleEn: "Try it yourself!",
+    descEn: "Enter a fraction and watch the glass fill with water!",
+    titleEs: "¡Inténtalo tú mismo!",
+    descEs: "¡Ingresa una fracción y observa cómo se llena el vaso con agua!",
+  ),
 ];

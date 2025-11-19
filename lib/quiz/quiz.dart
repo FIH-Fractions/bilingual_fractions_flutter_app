@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'quiz_question.dart';
 import 'quiz_categories.dart';
 
@@ -21,6 +22,7 @@ class _QuizPageState extends State<QuizPage> {
   int? _selectedAnswerIndex;
   bool _quizCompleted = false;
   int _correctAnswers = 0; // Track correct answers
+  late FlutterTts _flutterTts; // Text-to-speech instance
 
   @override
   void initState() {
@@ -28,6 +30,109 @@ class _QuizPageState extends State<QuizPage> {
     // Get questions for this category
     questions = getQuestionsByCategory(widget.category);
     _loadScore();
+    _initTts();
+  }
+
+  // Initialize text-to-speech
+  void _initTts() async {
+    _flutterTts = FlutterTts();
+    await _flutterTts.setLanguage('en-US');
+    await _flutterTts.setSpeechRate(0.8);
+  }
+
+  // Check if an answer is a fraction that should be pronounced
+  bool _isFraction(String answer) {
+    // Remove extra spaces and convert to lowercase for checking
+    String cleanAnswer = answer.trim().toLowerCase();
+
+    // Skip common non-fraction phrases
+    List<String> nonFractionPhrases = [
+      'both are equal',
+      'cannot determine',
+      'they are equal',
+      'none',
+      'all of these',
+      'the one with smaller numerator',
+      'the one with larger numerator',
+    ];
+
+    for (String phrase in nonFractionPhrases) {
+      if (cleanAnswer.contains(phrase)) {
+        return false;
+      }
+    }
+
+    // Check for numerical fractions (e.g., "2/4", "1/2")
+    if (RegExp(r'\d+/\d+').hasMatch(cleanAnswer)) {
+      return true;
+    }
+
+    // Check for word-based fractions
+    List<String> fractionWords = [
+      'half',
+      'halves',
+      'third',
+      'thirds',
+      'fourth',
+      'fourths',
+      'quarter',
+      'quarters',
+      'fifth',
+      'fifths',
+      'sixth',
+      'sixths',
+      'seventh',
+      'sevenths',
+      'eighth',
+      'eighths',
+      'ninth',
+      'ninths',
+      'tenth',
+      'tenths',
+    ];
+
+    for (String fractionWord in fractionWords) {
+      if (cleanAnswer.contains(fractionWord)) {
+        return true;
+      }
+    }
+
+    // Check for ratio patterns like "three to four"
+    if (RegExp(
+            r'\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+to\s+(one|two|three|four|five|six|seven|eight|nine|ten)\b')
+        .hasMatch(cleanAnswer)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Convert fraction text to pronounceable format
+  String _convertToPronounceable(String answer) {
+    String pronounceable = answer.trim();
+
+    // Convert numerical fractions to words
+    pronounceable = pronounceable
+        .replaceAll('1/2', 'one half')
+        .replaceAll('1/4', 'one fourth')
+        .replaceAll('3/4', 'three fourths')
+        .replaceAll('2/3', 'two thirds')
+        .replaceAll('5/8', 'five eighths')
+        .replaceAll('2/4', 'two fourths')
+        .replaceAll('3/6', 'three sixths')
+        .replaceAll('4/8', 'four eighths')
+        .replaceAll('1/3', 'one third')
+        .replaceAll('2/8', 'two eighths');
+
+    return pronounceable;
+  }
+
+  // Speak the fraction
+  void _speakFraction(String answer) async {
+    if (_isFraction(answer)) {
+      String pronounceableText = _convertToPronounceable(answer);
+      await _flutterTts.speak(pronounceableText);
+    }
   }
 
   Future<void> _loadScore() async {
@@ -213,14 +318,34 @@ class _QuizPageState extends State<QuizPage> {
                           onPressed: () => _selectAnswer(idx),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              answer,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              textAlign: TextAlign.center,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    answer,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                if (_isFraction(answer))
+                                  GestureDetector(
+                                    onTap: () => _speakFraction(answer),
+                                    child: Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Icon(
+                                        Icons.volume_up_rounded,
+                                        size: 20,
+                                        color: Colors.blue.shade700,
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
@@ -423,5 +548,11 @@ class _QuizPageState extends State<QuizPage> {
       return values[idx + 1];
     }
     return null;
+  }
+
+  @override
+  void dispose() {
+    _flutterTts.stop();
+    super.dispose();
   }
 }
